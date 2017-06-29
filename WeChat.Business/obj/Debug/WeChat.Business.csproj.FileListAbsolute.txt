@@ -1,0 +1,5 @@
+C:\Users\yuanj\Desktop\WeChat\WeChat.Business\bin\Debug\WeChat.Business.dll
+C:\Users\yuanj\Desktop\WeChat\WeChat.Business\bin\Debug\WeChat.Business.pdb
+C:\Users\yuanj\Desktop\WeChat\WeChat.Business\obj\Debug\WeChat.Business.csprojResolveAssemblyReference.cache
+C:\Users\yuanj\Desktop\WeChat\WeChat.Business\obj\Debug\WeChat.Business.dll
+C:\Users\yuanj\Desktop\WeChat\WeChat.Business\obj\Debug\WeChat.Business.pdb
