@@ -111,6 +111,9 @@ namespace WeChat.Business.BLL
                     string r_uri = match.Groups[1].Value;
                     Context.redirect_uri = r_uri + "&fun=new&version=v2&lang=zh_CN";
                     Context.base_uri = r_uri.Substring(0, r_uri.LastIndexOf('/'));
+                    Uri uri = new Uri(Context.base_uri);
+                    string root_uri = "https://" + uri.Authority;
+                    Context.root_uri = root_uri;
                 }
                 return;
             }

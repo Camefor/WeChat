@@ -65,7 +65,7 @@ namespace WeChat
             }
             else if (obj is bool && !((bool)obj))
             {
-                Toast.Maketext(this, "获取二维码失败,请稍后重试").Show();
+                Toast.MakeText(this, "获取二维码失败,请稍后重试").Show();
                 UpdateInfo("获取二维码失败,请稍后重试");
             }
         }
@@ -156,7 +156,7 @@ namespace WeChat
                 this.Hide();
                 return;
             }
-            Toast.Maketext(this, "登录失败！").Show();
+            Toast.MakeText(this, "登录失败！").Show();
 
         }
 

@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListAdapter\LastRContactAdapter.cs" />
     <Compile Include="ListAdapter\RContactAdapter.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>

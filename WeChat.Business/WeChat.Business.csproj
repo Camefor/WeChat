@@ -58,6 +58,7 @@
     <Compile Include="Base\BaseManager.cs" />
     <Compile Include="BLL\RContactManager.cs" />
     <Compile Include="BLL\UserManager.cs" />
+    <Compile Include="Model\ContactResponse.cs" />
     <Compile Include="Model\Keys.cs" />
     <Compile Include="Model\MPSubscribeMsg.cs" />
     <Compile Include="Model\RContact.cs" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -105,6 +106,7 @@ namespace WeChat.Business.Model
         public string LastMessage { get; set; }
         public DateTime? LastMessageTime { get; set; }
 
+        public Image HeadImage { get; set; }
 
     }
 }

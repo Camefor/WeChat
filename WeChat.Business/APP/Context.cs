@@ -21,6 +21,7 @@ namespace WeChat.Business.APP
 
 
         public static string uuid;
+        public static string root_uri = string.Empty;
         public static string base_uri = string.Empty;
         public static string redirect_uri = string.Empty;
         public static string BaseRequest;

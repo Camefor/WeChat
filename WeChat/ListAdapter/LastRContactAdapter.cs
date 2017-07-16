@@ -17,13 +17,12 @@ namespace WeChat.ListAdapter
     /***
     * ===========================================================
     * 创建人：袁建廷
-    * 创建时间：2017/07/03 11:56:28
+    * 创建时间：2017/06/28 17:10:15
     * 说明：
     * ==========================================================
     * */
-    public class RContactAdapter : Adapter
+    public class LastRContactAdapter : Adapter
     {
-
         private List<RContact> items;
         private Font font;
         private Color SubItemSelectColor = Color.FromArgb(198, 197, 197);
@@ -33,12 +32,13 @@ namespace WeChat.ListAdapter
         private API api;
 
 
-        public RContactAdapter(API api)
+        public LastRContactAdapter(API api)
         {
             this.api = api;
             font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             LastFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
         }
+
 
         public void SetItems(List<RContact> items)
         {
@@ -69,10 +69,14 @@ namespace WeChat.ListAdapter
             notifyDataSetChanged();
         }
 
-
         public override int GetCount()
         {
             return (items == null) ? 0 : items.Count;
+        }
+
+        public override Object Item(int position)
+        {
+            return items[position];
         }
 
         public override long GetItemId(int position)
@@ -80,12 +84,7 @@ namespace WeChat.ListAdapter
             return position;
         }
 
-        public override object Item(int position)
-        {
-            return items[position];
-        }
-
-        public override void GetView(int position, FListItem item, System.Drawing.Graphics g)
+        public override void GetView(int position, FListItem item, Graphics g)
         {
             item.Height = 65;
             RContact bean = items[position];
@@ -136,7 +135,9 @@ namespace WeChat.ListAdapter
                 }
             }
 
+
         }
+
 
         /// <summary>
         /// 绘制列表子项的头像
@@ -173,7 +174,6 @@ namespace WeChat.ListAdapter
             Image image = api.HttpTools.GetResponseImage(url);
             item.HeadImage = image;
         }
-
 
     }
 }

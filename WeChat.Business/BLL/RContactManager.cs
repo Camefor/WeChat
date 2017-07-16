@@ -108,20 +108,86 @@ namespace WeChat.Business.BLL
         }
 
 
-
+        /// <summary>
+        /// 获取好友信息
+        /// </summary>
+        /// <param name="d"></param>
         public void GetRContact(SendOrPostCallback d)
         {
-            List<RContact> items = new List<RContact>();
-            for (int i = 0; i < 20; i++)
+            ContactResponse response = null;
+            try
             {
-                RContact contact = new RContact();
-                contact.NickName = "小冰";
-                contact.LastMessage = "听多了爱情故事中的那。";
-                contact.LastMessageTime = DateTime.Now;
-                items.Add(contact);
+                string url = Context.base_uri + "/webwxgetcontact?lang=zh_CN&pass_ticket=" + Context.pass_ticket + "&r=" + Tools.GetTimeStamp() + "&seq=0&skey=" + Context.skey;
+                string json = http.GetPage(url);
+                response = JsonConvert.DeserializeObject<ContactResponse>(json);
+                if (response != null)
+                {
+                    response.MemberCount = response.MemberCount - 1;//把自己减去
+                    foreach (RContact item in response.MemberList)
+                    {
+
+                        try
+                        {
+                            string key = item.UserName;
+                            if (item.VerifyFlag == 8 || item.VerifyFlag == 24)
+                            {
+                                if (Context.PublicUsersList.ContainsKey(key) == false)
+                                {
+                                    Context.PublicUsersList.Add(key, item);
+                                }
+                                else
+                                {
+                                    Context.PublicUsersList[key] = item;
+                                }
+                            }
+                            else if (key.StartsWith("@@")) //群聊
+                            {
+                                if (!Context.GroupList.ContainsKey(key))
+                                {
+                                    Context.GroupList.Add(key, item);
+                                }
+                                else
+                                {
+                                    Context.GroupList[key] = item;
+                                }
+                            }
+                            else if (Context.SpecialUsers.Contains(key))//特殊账号
+                            {
+                                if (!Context.SpecialUsersList.ContainsKey(key))
+                                {
+                                    Context.SpecialUsersList.Add(key, item);
+                                }
+                                else
+                                {
+                                    Context.SpecialUsersList[key] = item;
+                                }
+                            }
+                            else
+                            {
+                                if (!Context.ContactList.ContainsKey(key))
+                                {
+                                    Context.ContactList.Add(key, item);
+                                }
+                                else
+                                {
+                                    Context.ContactList[key] = item;
+                                }
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            LogHandler.e(e);
+                        }
+                    }
+                }
             }
+            catch (Exception e)
+            {
+                LogHandler.e(e);
+            }
+
             if (m_SyncContext != null)
-                m_SyncContext.Post(d, items);
+                m_SyncContext.Post(d, response);
         }
 
 
