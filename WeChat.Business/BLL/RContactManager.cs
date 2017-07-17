@@ -191,7 +191,56 @@ namespace WeChat.Business.BLL
         }
 
 
+        /// <summary>
+        /// 查询指定群 好友信息
+        /// 获取群聊天会话列表信息（post）：
+        /// </summary>
+        public BatchgetContactResponse webwxbatchgetcontact(string UserName)
+        {
+
+            try
+            {
+                string url = Context.base_uri + "/webwxbatchgetcontact?lang=zh_CN&type=ex&r=" + Tools.GetTimeStamp() + "&pass_ticket=" + Context.pass_ticket;
+                ParamBean baseRuquest = JsonConvert.DeserializeObject<ParamBean>(Context.BaseRequest);
+
+                List<EncryChatRoom> list = new List<EncryChatRoom>();
+
+                EncryChatRoom room = new EncryChatRoom();
+                room.EncryChatRoomId = "";
+                room.UserName = UserName;
+                list.Add(room);
 
 
+                var param = new
+                {
+                    BaseRequest = baseRuquest.BaseRequest,
+                    Count = list.Count,
+                    List = list
+                };
+                string poatData = JsonConvert.SerializeObject(param);
+                string json = http.PostData(url, poatData);
+
+                BatchgetContactResponse response = JsonConvert.DeserializeObject<BatchgetContactResponse>(json);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                LogHandler.e(ex);
+            }
+            return null;
+        }   
+
+    }
+
+
+    class ParamBean
+    {
+        public BaseRequest BaseRequest { get; set; }
+    }
+
+    class EncryChatRoom
+    {
+        public string EncryChatRoomId { get; set; }
+        public string UserName { get; set; }
     }
 }

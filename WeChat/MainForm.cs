@@ -20,7 +20,7 @@ using WeChat.ListAdapter;
 
 namespace WeChat
 {
-    public partial class MainForm : FormSkin
+    public partial class MainForm : FormSkin,IMessageCallBack
     {
 
         private RContactManager RContactManager;
@@ -110,11 +110,25 @@ namespace WeChat
 
             List<RContact> List = new List<RContact>(response.MemberList);
             RContactAdapter.SetItems(List);
+            //获取消息
+            AsyncTask.StartNew(LoadMessage);
+        }
+
+
+        public void LoadMessage() 
+        {
+            api.MessageManager.GetMessage(this);
         }
 
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            api.MessageManager.Online = false;
+            if (api != null) 
+            {
+                api.UserManager.webwxlogout();
+            }
+
             if (loginForm != null)
                 loginForm.Close();
         }
@@ -184,6 +198,54 @@ namespace WeChat
         } 
         #endregion
 
+
+
+        public void OnMessage(WMessage item)
+        {
+            m_SyncContext.Post(UpdateMessage,item);
+        }
+
+        private void UpdateMessage(object state)
+        {
+            WMessage item = state as WMessage;
+            SetNotify("测试", item.Content);
+        }
+
+        public void OnNewRContact(RContact Contact)
+        {
+            
+        }
+
+        public void OnWeChatOut(string message)
+        {
+            this.Invoke((EventHandler)delegate {
+                ShowToast(message);
+            });
+        }
+
+        //最后通知时间
+        DateTime LastNotifyTime = DateTime.Now;
+        /// <summary>
+        ///  //消息气泡 提示
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="message"></param>
+        public void SetNotify(string title, string message)
+        {
+            //通知间隔为3秒
+            DateTime time = DateTime.Now;
+            TimeSpan span = time - LastNotifyTime;
+            if (span.Hours > 0 || span.Minutes > 0 || span.Seconds > 3)
+            {
+                if (!string.IsNullOrEmpty(message))
+                {
+                    //notifyIcon1.BalloonTipText ="【"+title+"】："+ message;
+                    notifyIcon1.ShowBalloonTip(3000, title, message, ToolTipIcon.Info);
+                    LastNotifyTime = DateTime.Now;
+                }
+            }
+
+        }
 
     }
 }

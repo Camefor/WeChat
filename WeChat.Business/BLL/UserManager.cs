@@ -195,5 +195,28 @@ namespace WeChat.Business.BLL
             return true;
         }
 
+
+        /// <summary>
+        /// 退出登录
+        /// </summary>
+        public void webwxlogout()
+        {
+            try
+            {
+                string url = Context.base_uri + "/webwxlogout?redirect=1&type=1&skey=" + Context.skey;
+
+                Dictionary<string, object> map = new Dictionary<string, object>();
+                map.Add("sid", Context.sid);
+                map.Add("uin", Context.uin);
+                string param = http.GetParameter(map);
+                string json = http.PostData(url, param);
+
+            }
+            catch (Exception x)
+            {
+                LogHandler.e(x);
+            }
+        }
+
     }
 }
