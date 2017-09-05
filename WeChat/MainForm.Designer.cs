@@ -46,6 +46,11 @@
             this.textBoxSkin1 = new formSkin.Controls.TextBoxSkin();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.lblOpUser = new System.Windows.Forms.Label();
+            this.MessageContext = new System.Windows.Forms.Panel();
+            this.btnSend = new formSkin.Controls.ButtonSkin();
+            this.txtMessage = new System.Windows.Forms.TextBox();
+            this.fListView1 = new formSkin.Controls._List.FListView();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -59,6 +64,8 @@
             this.panel6.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel4.SuspendLayout();
+            this.MessageContext.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -259,11 +266,78 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackgroundImage = global::WeChat.Properties.Resources.img_bg;
             this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel4.Controls.Add(this.lblOpUser);
+            this.panel4.Controls.Add(this.MessageContext);
             this.panel4.Location = new System.Drawing.Point(310, 27);
             this.panel4.Margin = new System.Windows.Forms.Padding(0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(550, 613);
             this.panel4.TabIndex = 2;
+            // 
+            // lblOpUser
+            // 
+            this.lblOpUser.AutoSize = true;
+            this.lblOpUser.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblOpUser.Location = new System.Drawing.Point(7, 7);
+            this.lblOpUser.Name = "lblOpUser";
+            this.lblOpUser.Size = new System.Drawing.Size(164, 25);
+            this.lblOpUser.TabIndex = 1;
+            this.lblOpUser.Text = "你点赞的样子好帅";
+            this.lblOpUser.Visible = false;
+            // 
+            // MessageContext
+            // 
+            this.MessageContext.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MessageContext.Controls.Add(this.btnSend);
+            this.MessageContext.Controls.Add(this.txtMessage);
+            this.MessageContext.Controls.Add(this.fListView1);
+            this.MessageContext.Location = new System.Drawing.Point(1, 35);
+            this.MessageContext.Margin = new System.Windows.Forms.Padding(0);
+            this.MessageContext.Name = "MessageContext";
+            this.MessageContext.Size = new System.Drawing.Size(549, 578);
+            this.MessageContext.TabIndex = 0;
+            this.MessageContext.Visible = false;
+            // 
+            // btnSend
+            // 
+            this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSend.ForeColor = System.Drawing.Color.White;
+            this.btnSend.Location = new System.Drawing.Point(442, 539);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(90, 28);
+            this.btnSend.TabIndex = 2;
+            this.btnSend.Text = "发送";
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            // 
+            // txtMessage
+            // 
+            this.txtMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtMessage.Location = new System.Drawing.Point(2, 479);
+            this.txtMessage.Margin = new System.Windows.Forms.Padding(0);
+            this.txtMessage.Multiline = true;
+            this.txtMessage.Name = "txtMessage";
+            this.txtMessage.Size = new System.Drawing.Size(544, 98);
+            this.txtMessage.TabIndex = 1;
+            // 
+            // fListView1
+            // 
+            this.fListView1.Adapter = null;
+            this.fListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.fListView1.IntervalHeight = 1;
+            this.fListView1.Location = new System.Drawing.Point(2, 0);
+            this.fListView1.Margin = new System.Windows.Forms.Padding(0);
+            this.fListView1.Name = "fListView1";
+            this.fListView1.ScrollBackColor = System.Drawing.Color.WhiteSmoke;
+            this.fListView1.Size = new System.Drawing.Size(544, 479);
+            this.fListView1.TabIndex = 0;
+            this.fListView1.Text = "fListView1";
             // 
             // notifyIcon1
             // 
@@ -310,6 +384,10 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.MessageContext.ResumeLayout(false);
+            this.MessageContext.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -333,6 +411,11 @@
         private System.Windows.Forms.Panel panel6;
         private formSkin.Controls._List.FListView ContartList;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.Panel MessageContext;
+        private System.Windows.Forms.Label lblOpUser;
+        private formSkin.Controls._List.FListView fListView1;
+        private System.Windows.Forms.TextBox txtMessage;
+        private formSkin.Controls.ButtonSkin btnSend;
     }
 }
 

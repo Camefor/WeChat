@@ -3,3 +3,13 @@ C:\Users\yuanj\Desktop\WeChat\WeChat.Business\bin\Debug\WeChat.Business.pdb
 C:\Users\yuanj\Desktop\WeChat\WeChat.Business\obj\Debug\WeChat.Business.csprojResolveAssemblyReference.cache
 C:\Users\yuanj\Desktop\WeChat\WeChat.Business\obj\Debug\WeChat.Business.dll
 C:\Users\yuanj\Desktop\WeChat\WeChat.Business\obj\Debug\WeChat.Business.pdb
+C:\Users\yuanj\OneDrive\代码\WeChat\WeChat.Business\bin\Debug\WeChat.Business.dll
+C:\Users\yuanj\OneDrive\代码\WeChat\WeChat.Business\bin\Debug\WeChat.Business.pdb
+C:\Users\yuanj\OneDrive\代码\WeChat\WeChat.Business\obj\Debug\WeChat.Business.csprojResolveAssemblyReference.cache
+C:\Users\yuanj\OneDrive\代码\WeChat\WeChat.Business\obj\Debug\WeChat.Business.dll
+C:\Users\yuanj\OneDrive\代码\WeChat\WeChat.Business\obj\Debug\WeChat.Business.pdb
+E:\WorkSpace\WeChat\WeChat.Business\bin\Debug\WeChat.Business.dll
+E:\WorkSpace\WeChat\WeChat.Business\bin\Debug\WeChat.Business.pdb
+E:\WorkSpace\WeChat\WeChat.Business\obj\Debug\WeChat.Business.csprojResolveAssemblyReference.cache
+E:\WorkSpace\WeChat\WeChat.Business\obj\Debug\WeChat.Business.dll
+E:\WorkSpace\WeChat\WeChat.Business\obj\Debug\WeChat.Business.pdb

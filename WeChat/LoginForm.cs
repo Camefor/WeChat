@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -40,6 +41,9 @@ namespace WeChat
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
+            Init();
+
+
             AsyncTask.StartNew(() =>
             {
                 bool result = UserManager.GetUIN();
@@ -54,6 +58,21 @@ namespace WeChat
             });
         }
 
+        private void Init()
+        {
+            Constants.PATH_INSTALL = Application.StartupPath;
+            Constants.PATH_CACHE = Constants.PATH_INSTALL + "/cache/";
+            Constants.PATH_DATA = Constants.PATH_INSTALL + "/data/";
+            if (!Directory.Exists(Constants.PATH_CACHE))
+            {
+                Directory.CreateDirectory(Constants.PATH_CACHE);
+            }
+            if (!Directory.Exists(Constants.PATH_DATA))
+            {
+                Directory.CreateDirectory(Constants.PATH_DATA);
+            }
+
+        }
 
         private void Update(object obj)
         {
@@ -148,7 +167,7 @@ namespace WeChat
 
         private void AsynLogin_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            bool result =Convert.ToBoolean( e.Result);
+            bool result = Convert.ToBoolean(e.Result);
             if (result)
             {
                 MainForm form = new MainForm(this);

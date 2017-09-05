@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using WeChat.Business.APP;
 using WeChat.Business.Base;
+using WeChat.Business.MessageItems;
 using WeChat.Business.Model;
 using WeChat.Business.Net;
 using WeChat.Business.Utils;
@@ -23,6 +24,7 @@ namespace WeChat.Business.BLL
     * */
     public class MessageManager : BaseManager
     {
+        private PicItem PicItem;
         private bool online = true;
         public Boolean Online
         {
@@ -33,7 +35,7 @@ namespace WeChat.Business.BLL
         public MessageManager(HttpTools http)
             : base(http)
         {
-
+            PicItem = new PicItem(http);
         }
 
 
@@ -117,6 +119,24 @@ namespace WeChat.Business.BLL
 
                         foreach (WMessage item in response.AddMsgList)
                         {
+                            //判断IsSend
+                            if(item.FromUserName== Context.user.UserName)
+                            {
+                                item.IsSend = true;
+                            }
+                            if (item.FromUserName.StartsWith("@@"))
+                            {
+                                item.isGroup = true;
+                            }
+                            switch (item.MsgType)
+                            {
+                                case 47://表情图片
+                                    string path= PicItem.AnalysisImageMessage(item.Content);
+                                    item.FileContent = path;
+                                    break;
+                                default:
+                                    break;
+                            }
                             CallBack.OnMessage(item);
                         }
                     }

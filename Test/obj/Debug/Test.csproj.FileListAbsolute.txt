@@ -1,0 +1,5 @@
+C:\Users\yuanj\OneDrive\代码\WeChat\Test\bin\Debug\Test.exe.config
+C:\Users\yuanj\OneDrive\代码\WeChat\Test\bin\Debug\Test.exe
+C:\Users\yuanj\OneDrive\代码\WeChat\Test\bin\Debug\Test.pdb
+C:\Users\yuanj\OneDrive\代码\WeChat\Test\obj\Debug\Test.exe
+C:\Users\yuanj\OneDrive\代码\WeChat\Test\obj\Debug\Test.pdb

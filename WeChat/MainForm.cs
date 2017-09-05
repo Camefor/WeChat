@@ -35,6 +35,11 @@ namespace WeChat
         private RContactAdapter RContactAdapter;
         private LoginForm loginForm;
         private API api;
+        /// <summary>
+        /// 当前打开的好友信息
+        /// </summary>
+        private RContact rContact;
+        private MessageAdapter adapter;
 
         public MainForm(LoginForm loginForm)
         {
@@ -47,6 +52,9 @@ namespace WeChat
             RContactManager = api.RContactManager;
             RContactManager.m_SyncContext = m_SyncContext;
             this.loginForm = loginForm;
+            adapter = new MessageAdapter();
+            this.fListView1.Adapter = adapter;
+            txtMessage.ImeMode = ImeMode.OnHalf;
 
         }
 
@@ -64,7 +72,25 @@ namespace WeChat
             AsyncTask.StartNew(() => {
                 RContactManager.Webwxinit(UpdateUser);
             });
-            
+            this.LastList.ItemClick += LastList_ItemClick;
+            this.ContartList.ItemClick += LastList_ItemClick;
+        }
+
+        /// <summary>
+        /// listView 向单机事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void LastList_ItemClick(object sender, formSkin.Controls._ChatListBox.ChatListEventArgs e)
+        {
+            RContact rContact = e.Data as RContact;
+            if (this.rContact == rContact)
+                return;
+            this.rContact = rContact;
+            this.lblOpUser.Text = rContact.NickName;
+            this.lblOpUser.Visible = true;
+            this.MessageContext.Visible = true;
+
         }
 
       
@@ -202,12 +228,18 @@ namespace WeChat
 
         public void OnMessage(WMessage item)
         {
+            if (item.MsgType == 51)
+                return;
             m_SyncContext.Post(UpdateMessage,item);
         }
 
         private void UpdateMessage(object state)
         {
             WMessage item = state as WMessage;
+            if (item.MsgType == 51)
+                return;
+            adapter.Add(item);
+            fListView1.ScrollBottom();
             SetNotify("测试", item.Content);
         }
 
@@ -247,5 +279,18 @@ namespace WeChat
 
         }
 
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            string message = txtMessage.Text;
+            if (string.IsNullOrWhiteSpace(message))
+                return;
+            WMessage item = new WMessage();
+            item.MsgType = 1;
+            item.IsSend = true;
+            item.Content = message;
+            adapter.Add(item);
+            txtMessage.Text = "";
+            this.fListView1.ScrollBottom();
+        }
     }
 }

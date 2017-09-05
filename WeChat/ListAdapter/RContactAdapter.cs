@@ -80,7 +80,7 @@ namespace WeChat.ListAdapter
             return position;
         }
 
-        public override object Item(int position)
+        public override object GetItem(int position)
         {
             return items[position];
         }

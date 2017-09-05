@@ -74,7 +74,7 @@ namespace WeChat.ListAdapter
             return (items == null) ? 0 : items.Count;
         }
 
-        public override Object Item(int position)
+        public override Object GetItem(int position)
         {
             return items[position];
         }
