@@ -75,6 +75,7 @@
     <Compile Include="Model\RContact.cs" />
     <Compile Include="Model\RecommendInfo.cs" />
     <Compile Include="Model\Response.cs" />
+    <Compile Include="Model\StatusNotifyResponse.cs" />
     <Compile Include="Model\SyncKey.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserResponse.cs" />

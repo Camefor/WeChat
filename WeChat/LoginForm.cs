@@ -114,28 +114,28 @@ namespace WeChat
                     case 200:
                         //等待用户确定
                         this.AsynLogin.ReportProgress(2);
-                        bool Result = UserManager.Login();
-                        if (Result)
+                        string Result = UserManager.Login();
+                        if ("success"==Result)
                         {
                             this.AsynLogin.ReportProgress(3);
-                            e.Result = true;
+                            e.Result = "success";
                             return;
                         }
                         else
                         {
                             this.AsynLogin.ReportProgress(98);
-                            e.Result = false;
+                            e.Result = Result;
                             return;
                         }
                         break;
 
                     case 408://登陆超时
                         this.AsynLogin.ReportProgress(0);
-                        e.Result = false;
+                        e.Result = "登陆超时";
                         return;
                     default:
                         this.AsynLogin.ReportProgress(98);
-                        e.Result = false;
+                        e.Result = "登陆异常";
                         return;
                 }
             }
@@ -167,15 +167,19 @@ namespace WeChat
 
         private void AsynLogin_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            bool result = Convert.ToBoolean(e.Result);
-            if (result)
+            string result = e.Result.ToString();
+            if ("success" == result)
             {
                 MainForm form = new MainForm(this);
                 form.Show();
                 this.Hide();
                 return;
             }
-            Toast.MakeText(this, "登录失败！").Show();
+            else 
+            {
+                Toast.MakeText(this, result,7000).Show();
+            }
+            
 
         }
 

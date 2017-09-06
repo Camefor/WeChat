@@ -125,12 +125,13 @@ namespace WeChat.Business.BLL
         /// 登录
         /// </summary>
         /// <returns></returns>
-        public bool Login()
+        public string Login()
         {
             try
             {
                 string url = Context.redirect_uri;
                 string xml = http.GetPage(url);
+                //string xml = "<error><ret>1203</ret><message>当前登录环境异常。为了你的帐号安全，暂时不能登录web微信。你可以通过手机客户端或者windows微信登录。</message></error>";
                 XmlDocument doc = new XmlDocument();
                 foreach (Cookie ck in http.GetCookie(url))
                 {
@@ -156,6 +157,10 @@ namespace WeChat.Business.BLL
                     switch (key)
                     {
                         case "ret":
+                            if (value == "1203") {
+
+                                return "当前登录环境异常。为了你的帐号安全，暂时不能登录web微信。你可以通过手机客户端或者windows微信登录。";
+                            }
                             break;
                         case "message":
                             break;
@@ -179,7 +184,7 @@ namespace WeChat.Business.BLL
             }
             catch (Exception e)
             {
-                return false;
+                return "登录异常";
             }
 
             var BaseRequest = new
@@ -192,7 +197,7 @@ namespace WeChat.Business.BLL
             };
             string param = JsonConvert.SerializeObject(new { BaseRequest });
             Context.BaseRequest = param;
-            return true;
+            return "success";
         }
 
 

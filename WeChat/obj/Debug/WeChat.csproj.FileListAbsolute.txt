@@ -40,3 +40,17 @@ E:\WorkSpace\WeChat\WeChat\obj\Debug\WeChat.LoginForm.resources
 E:\WorkSpace\WeChat\WeChat\obj\Debug\WeChat.MainForm.resources
 E:\WorkSpace\WeChat\WeChat\obj\Debug\WeChat.Properties.Resources.resources
 E:\WorkSpace\WeChat\WeChat\obj\Debug\WeChat.csproj.GenerateResource.Cache
+C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\bin\Debug\WeChat.exe.config
+C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\obj\Debug\WeChat.exe
+C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\obj\Debug\WeChat.pdb
+C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\obj\Debug\WeChat.csprojResolveAssemblyReference.cache
+C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\obj\Debug\WeChat.LoginForm.resources
+C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\obj\Debug\WeChat.MainForm.resources
+C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\obj\Debug\WeChat.Properties.Resources.resources
+C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\obj\Debug\WeChat.csproj.GenerateResource.Cache
+C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\bin\Debug\WeChat.exe
+C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\bin\Debug\WeChat.pdb
+C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\bin\Debug\WeChat.Business.dll
+C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\bin\Debug\Newtonsoft.Json.dll
+C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\bin\Debug\ThoughtWorks.QRCode.dll
+C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\bin\Debug\WeChat.Business.pdb

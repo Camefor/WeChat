@@ -20,7 +20,7 @@ using WeChat.ListAdapter;
 
 namespace WeChat
 {
-    public partial class MainForm : FormSkin,IMessageCallBack
+    public partial class MainForm : FormSkin, IMessageCallBack
     {
 
         private RContactManager RContactManager;
@@ -48,7 +48,7 @@ namespace WeChat
             m_SyncContext = SynchronizationContext.Current;
             AsyncTask = new TaskFactory();
             api = loginForm.api;
-            
+
             RContactManager = api.RContactManager;
             RContactManager.m_SyncContext = m_SyncContext;
             this.loginForm = loginForm;
@@ -69,7 +69,8 @@ namespace WeChat
             pictureBoxSkin1.Selected = true;
 
             //获取用户信息
-            AsyncTask.StartNew(() => {
+            AsyncTask.StartNew(() =>
+            {
                 RContactManager.Webwxinit(UpdateUser);
             });
             this.LastList.ItemClick += LastList_ItemClick;
@@ -93,7 +94,7 @@ namespace WeChat
 
         }
 
-      
+
 
         /// <summary>
         /// 更新用户信息
@@ -127,7 +128,7 @@ namespace WeChat
         private void UpdateRContact(object state)
         {
             ContactResponse response = state as ContactResponse;
-            if (response == null) 
+            if (response == null)
             {
                 ShowToast("获取好友数据失败！");
                 LogHandler.e("UpdateRContact ================>response==null");
@@ -141,7 +142,7 @@ namespace WeChat
         }
 
 
-        public void LoadMessage() 
+        public void LoadMessage()
         {
             api.MessageManager.GetMessage(this);
         }
@@ -150,7 +151,7 @@ namespace WeChat
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             api.MessageManager.Online = false;
-            if (api != null) 
+            if (api != null)
             {
                 api.UserManager.webwxlogout();
             }
@@ -159,9 +160,9 @@ namespace WeChat
                 loginForm.Close();
         }
 
-        private void ShowToast(string message) 
+        private void ShowToast(string message)
         {
-            Toast.MakeText(this,message).Show();
+            Toast.MakeText(this, message).Show();
         }
 
         #region table
@@ -221,7 +222,7 @@ namespace WeChat
                 default:
                     break;
             }
-        } 
+        }
         #endregion
 
 
@@ -230,27 +231,44 @@ namespace WeChat
         {
             if (item.MsgType == 51)
                 return;
-            m_SyncContext.Post(UpdateMessage,item);
+
+            m_SyncContext.Post(UpdateMessage, item);
+            //保存消息好本地数据库
         }
 
         private void UpdateMessage(object state)
         {
             WMessage item = state as WMessage;
-            if (item.MsgType == 51)
-                return;
+            int flag = (item.isGroup) ? 2 : 1;
+            RContact contact = Context.GetRContact(flag, item.ToUserName);
+            if (contact == null)
+            {
+                flag = 4;//是否为公众号
+                contact = Context.GetRContact(flag, item.ToUserName);
+                if (contact == null)
+                    return;
+            }
+
+            //判断是否为当前打开好友消息
+            if (item.ToUserName != this.rContact.UserName)
+            {
+                SetNotify(contact.NickName, item.Content);
+            }
+
             adapter.Add(item);
             fListView1.ScrollBottom();
-            SetNotify("测试", item.Content);
+
         }
 
         public void OnNewRContact(RContact Contact)
         {
-            
+
         }
 
         public void OnWeChatOut(string message)
         {
-            this.Invoke((EventHandler)delegate {
+            this.Invoke((EventHandler)delegate
+            {
                 ShowToast(message);
             });
         }
@@ -291,6 +309,46 @@ namespace WeChat
             adapter.Add(item);
             txtMessage.Text = "";
             this.fListView1.ScrollBottom();
+            SendTextMessage(message, this.rContact.UserName);
         }
+
+        #region 发送文本消息
+        /// <summary>
+        /// 发现消息
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="toUserName"></param>
+        /// <returns></returns>
+        public void SendTextMessage(string message, string toUserName)
+        {
+            AsyncTask.StartNew(() =>
+            {
+                bool Result = false;
+                Result = api.MessageManager.SendTextMessage(Context.user.UserName, toUserName, message);
+            });
+        }
+
+        /// <summary>
+        /// 发现消息
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="toUserName"></param>
+        /// <returns></returns>
+        public void SendTextMessage(string message, List<string> toUserNames)
+        {
+            AsyncTask.StartNew(() =>
+            {
+                bool Result = false;
+                foreach (string item in toUserNames)
+                {
+                    if (string.IsNullOrWhiteSpace(item))
+                        continue;
+                    Result = api.MessageManager.SendTextMessage(Context.user.UserName, item, message);
+                }
+            });
+        }
+
+        #endregion
+
     }
 }

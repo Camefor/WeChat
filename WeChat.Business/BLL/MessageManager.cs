@@ -60,10 +60,10 @@ namespace WeChat.Business.BLL
         }
 
 
-        private void ExplainMessage(MessageResponse response, int selector,IMessageCallBack CallBack) 
+        private void ExplainMessage(MessageResponse response, int selector, IMessageCallBack CallBack)
         {
             if (response == null)
-                return;          
+                return;
 
             switch (selector)
             {
@@ -120,7 +120,7 @@ namespace WeChat.Business.BLL
                         foreach (WMessage item in response.AddMsgList)
                         {
                             //判断IsSend
-                            if(item.FromUserName== Context.user.UserName)
+                            if (item.FromUserName == Context.user.UserName)
                             {
                                 item.IsSend = true;
                             }
@@ -131,7 +131,7 @@ namespace WeChat.Business.BLL
                             switch (item.MsgType)
                             {
                                 case 47://表情图片
-                                    string path= PicItem.AnalysisImageMessage(item.Content);
+                                    string path = PicItem.AnalysisImageMessage(item.Content);
                                     item.FileContent = path;
                                     break;
                                 default:
@@ -171,7 +171,7 @@ namespace WeChat.Business.BLL
                         //添加通过好友到最近聊天
                         foreach (ModContactList item in response.ModContactList)
                         {
-                            
+
                             //CallBack.OnNewRContact(c);//新好友
 
 
@@ -198,7 +198,7 @@ namespace WeChat.Business.BLL
 
             }
         }
-        
+
 
 
 
@@ -293,6 +293,51 @@ namespace WeChat.Business.BLL
             }
             return null;
         }
+
+
+
+
+        /// <summary>
+        /// 发送文本消息
+        /// </summary>
+        /// <param name="FormUserName">发送方</param>
+        /// <param name="ToUserName">接受方</param>
+        /// <param name="Message">消息内容</param>
+        /// <returns></returns>
+        public bool SendTextMessage(string FormUserName, string ToUserName, string Message)
+        {
+            try
+            {
+                string url = Context.base_uri + "/webwxsendmsg?lang=zh_CN&pass_ticket=" + Context.pass_ticket;
+                var param = new
+                {
+                    BaseRequest = Context.BaseRequest,
+                    Msg = new
+                    {
+                        Type = 1,
+                        Content = Message,
+                        FromUserName = Context.user.UserName,
+                        ToUserName = ToUserName,
+                        LocalID = Tools.GetTimeStamp(),
+                        ClientMsgId = Tools.GetTimeStamp()
+                    },
+                    Scene = 0
+                };
+                string str = JsonConvert.SerializeObject(param);
+                string json = http.PostData(url, str);
+                StatusNotifyResponse response = JsonConvert.DeserializeObject<StatusNotifyResponse>(json);
+                if (response == null || response.BaseResponse.Ret != 0)
+                    return false;
+
+            }
+            catch (Exception e)
+            {
+                LogHandler.e(e);
+                return false;
+            }
+            return true;
+        }
+
 
 
     }

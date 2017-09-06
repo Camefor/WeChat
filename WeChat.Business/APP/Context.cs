@@ -56,6 +56,37 @@ namespace WeChat.Business.APP
 
         public static Dictionary<string, RContact> ContactList = new Dictionary<string, RContact>();//好友
 
+        /// <summary>
+        /// 更新username 获取好友、群、。。。
+        /// </summary>
+        /// <param name="flag">1 好友 、2 群 3 群友、4 公众号</param>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public static RContact GetRContact(int flag,string userName) 
+        {
+            switch (flag)
+            {
+                case 1:
+                    if (ContactList.ContainsKey(userName))
+                        return ContactList[userName];
+                    break;
+                case 2:
+                    if (GroupList.ContainsKey(userName))
+                        return GroupList[userName];
+                    break;
+                case 3:
+                    if (GroupMemeberList.ContainsKey(userName))
+                        return GroupMemeberList[userName];
+                    break;
+                case 4:
+                    if (PublicUsersList.ContainsKey(userName))
+                        return PublicUsersList[userName];
+                    break;
+                default:
+                    break;
+            }
+            return null;
+        }
 
         private static string _DeviceID;
         public static string DeviceID
