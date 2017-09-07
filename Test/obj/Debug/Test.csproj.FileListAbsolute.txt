@@ -3,3 +3,14 @@ C:\Users\yuanj\OneDrive\代码\WeChat\Test\bin\Debug\Test.exe
 C:\Users\yuanj\OneDrive\代码\WeChat\Test\bin\Debug\Test.pdb
 C:\Users\yuanj\OneDrive\代码\WeChat\Test\obj\Debug\Test.exe
 C:\Users\yuanj\OneDrive\代码\WeChat\Test\obj\Debug\Test.pdb
+C:\Users\2017-07\Documents\GitHub\WeChat\Test\bin\Debug\Test.exe.config
+C:\Users\2017-07\Documents\GitHub\WeChat\Test\obj\Debug\Test.exe
+C:\Users\2017-07\Documents\GitHub\WeChat\Test\obj\Debug\Test.pdb
+C:\Users\2017-07\Documents\GitHub\WeChat\Test\bin\Debug\Test.exe
+C:\Users\2017-07\Documents\GitHub\WeChat\Test\bin\Debug\Test.pdb
+C:\Users\2017-07\Documents\GitHub\WeChat\Test\bin\Debug\Newtonsoft.Json.dll
+C:\Users\2017-07\Documents\GitHub\WeChat\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+C:\Users\2017-07\Documents\GitHub\WeChat\Test\obj\Debug\Test.Properties.Resources.resources
+C:\Users\2017-07\Documents\GitHub\WeChat\Test\obj\Debug\Test.TestForm.resources
+C:\Users\2017-07\Documents\GitHub\WeChat\Test\obj\Debug\Test.csproj.GenerateResource.Cache
+C:\Users\2017-07\Documents\GitHub\WeChat\Test\bin\Debug\emoji.json

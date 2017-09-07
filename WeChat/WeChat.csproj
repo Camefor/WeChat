@@ -103,6 +103,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="emoji.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -150,6 +151,7 @@
   <ItemGroup>
     <Content Include="logo96.ico" />
     <Content Include="Resources\default_head.png" />
+    <Content Include="Resources\emoji.png" />
     <None Include="Resources\qr.png" />
   </ItemGroup>
   <ItemGroup>
