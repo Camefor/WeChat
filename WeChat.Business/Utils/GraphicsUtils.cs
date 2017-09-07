@@ -26,6 +26,9 @@ namespace WeChat.Business.Utils
         /// <returns></returns>
         public static Size GetStringWidth(string text, Graphics g, Font font)
         {
+
+
+
             SizeF size = g.MeasureString(text, font);
             return size.ToSize();
         }
