@@ -54,3 +54,5 @@ C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\bin\Debug\WeChat.Business.dll
 C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\bin\Debug\Newtonsoft.Json.dll
 C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\bin\Debug\ThoughtWorks.QRCode.dll
 C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\bin\Debug\WeChat.Business.pdb
+C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\bin\Debug\EmojiLib.dll
+C:\Users\2017-07\Documents\GitHub\WeChat\WeChat\bin\Debug\EmojiLib.pdb

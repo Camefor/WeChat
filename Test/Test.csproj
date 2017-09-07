@@ -85,6 +85,12 @@
   <ItemGroup>
     <None Include="Resources\emoji.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EmojiLib\EmojiLib.csproj">
+      <Project>{23f6ed9d-a82e-4671-bf32-18e94de116a2}</Project>
+      <Name>EmojiLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

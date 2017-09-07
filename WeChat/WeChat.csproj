@@ -103,7 +103,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="emoji.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -143,6 +142,10 @@
     <None Include="Resources\img_bg.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EmojiLib\EmojiLib.csproj">
+      <Project>{23f6ed9d-a82e-4671-bf32-18e94de116a2}</Project>
+      <Name>EmojiLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WeChat.Business\WeChat.Business.csproj">
       <Project>{53aa1690-6b5b-4a77-9f32-8c08a05a43df}</Project>
       <Name>WeChat.Business</Name>
@@ -151,7 +154,6 @@
   <ItemGroup>
     <Content Include="logo96.ico" />
     <Content Include="Resources\default_head.png" />
-    <Content Include="Resources\emoji.png" />
     <None Include="Resources\qr.png" />
   </ItemGroup>
   <ItemGroup>

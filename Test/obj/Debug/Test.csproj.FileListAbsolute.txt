@@ -14,3 +14,5 @@ C:\Users\2017-07\Documents\GitHub\WeChat\Test\obj\Debug\Test.Properties.Resource
 C:\Users\2017-07\Documents\GitHub\WeChat\Test\obj\Debug\Test.TestForm.resources
 C:\Users\2017-07\Documents\GitHub\WeChat\Test\obj\Debug\Test.csproj.GenerateResource.Cache
 C:\Users\2017-07\Documents\GitHub\WeChat\Test\bin\Debug\emoji.json
+C:\Users\2017-07\Documents\GitHub\WeChat\Test\bin\Debug\EmojiLib.dll
+C:\Users\2017-07\Documents\GitHub\WeChat\Test\bin\Debug\EmojiLib.pdb
