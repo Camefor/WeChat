@@ -58,28 +58,9 @@ namespace WeChat.ListAdapter
                 switch (obj.MsgType)
                 {
                     case 1://文本消息
-                        Size TextSize = GraphicsUtils.GetStringWidth(obj.Content, g, font);
-                        //大小
-                        int row = (obj.Content.Length % 20 == 0) ? obj.Content.Length / 20 : obj.Content.Length / 20+1;//行数
-                        int mw = (row <= 1) ? TextSize.Width+15 : 250;
-                        int mh = (row <= 1) ? TextSize.Height + 15 : row * 250;
-
-                        Height = TextSize.Height + 15;
-
-                        if (obj.IsSend)
-                        {
-                            x = item.Width - TextSize.Width - 20;
-                            y = item.Height * position + 5;
-                        }
-                        else
-                        {
-                            x = 5;
-                            y = item.Height * position + 5;
-                        }
-                        msgRec = new Rectangle(x, y, TextSize.Width + 5, Height);
-                        GraphicsUtils.FillRoundRectangle(g, br, msgRec, 10);
-                        DrawText(obj.Content, g, msgRec, br, TextSize);
-                        item.Height = Height + 15;
+                        string message = obj.Content;
+                        Rectangle Rectangle = DrawText(obj.IsSend, obj.Content, item, g, br);
+                        item.Height = Rectangle.Height;
                         break;
                     case 47://收藏表情
                         Height = 120;
@@ -116,34 +97,34 @@ namespace WeChat.ListAdapter
 
         }
 
-        private void DrawText(string str, Graphics g, SolidBrush br);
-
-
-        //绘制文字消息
-        private void DrawText(string str, Graphics g, Rectangle msgRec, SolidBrush br, Size TextSize)
+        private Rectangle DrawText(bool IsSend, string str, FListItem item, Graphics g, SolidBrush br)
         {
+            List<Object> array = EmojiLib.Emoji.ConvertToEmojiAndString(str);
+            List<Object> Newarray = null;
+            Rectangle Rectangle = ReckonRec(array, font, g, out Newarray);
+            Rectangle.X = (IsSend) ? item.Width - Rectangle.Width - 10 : item.Rectangle.X;
+            Rectangle.Y = item.Rectangle.Y;
+            GraphicsUtils.FillRoundRectangle(g, br, Rectangle, 10);//绘制背景
             br.Color = Color.Black;
-
-            char sign = '▓';
-            string message = EmojiLib.Emoji.FilterEmoji(str, sign);
-            List<string> array = EmojiLib.Emoji.DivisionString(str, sign);
-            foreach (string item in array)
+            int x = (IsSend) ? item.Width - Rectangle.Width + 5 : 10;
+            int y = Rectangle.Y + 10;
+            foreach (Object obj in Newarray)
             {
-                if (string.IsNullOrWhiteSpace(item))
-                    continue;
-                if (item.StartsWith("\\") && item.IndexOf("emoji") != -1)
+                if (obj is Bitmap)
                 {
-                    //获取图片
-                    string emojiName = item.Substring(1,item.LastIndexOf('\\')-1);
-                    Bitmap bit= EmojiLib.Emoji.GetImageByName(emojiName);
-                    g.DrawImage(bit,)
+                    Bitmap bit = obj as Bitmap;
+                    g.DrawImage(bit, new Point(x, y));
+                    x += 29;
                 }
                 else
-                    g.DrawString(item, font, br, new PointF(msgRec.X + 4, msgRec.Y + (msgRec.Height / 2 - TextSize.Height / 2)));
+                {
+                    g.DrawString(obj.ToString(), font, br, new Point(x, y));
+                    x += Convert.ToInt32(g.MeasureString(obj.ToString(), font).Width);
+                }
             }
-
-            //g.DrawString(str, font, br, new PointF(msgRec.X + 4, msgRec.Y + (msgRec.Height / 2 - TextSize.Height / 2)));
+            return Rectangle;
         }
+
 
         private void DrawImage(string path, Graphics g, Rectangle msgRec)
         {
@@ -162,6 +143,57 @@ namespace WeChat.ListAdapter
 
         }
 
+        /// <summary>
+        /// 预估 文本所占用的区域大小
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="font"></param>
+        /// <returns></returns>
+        private Rectangle ReckonRec(List<Object> array, Font font, Graphics g, out List<Object> Newarray)
+        {
+            Newarray = new List<object>();
+            Rectangle rect = Rectangle.Empty;
+            int row = 1;
+            float Width = 0;
+            int maxWidth = 355;
+            float tempWidth = 0;
+
+            foreach (Object item in array)
+            {
+                if (item is Bitmap)
+                {
+                    tempWidth += 29;
+                    Newarray.Add(item);
+                }
+                else
+                {
+                    string message = item.ToString();
+                    //tempWidth += g.MeasureString(message, font).Width;   //无法换行
+                    StringBuilder sb = new StringBuilder();
+                    foreach (char str in message)
+                    {
+                        tempWidth += CalTextWidth(g, font, str + "");
+                        sb.Append(str);
+                        if (tempWidth > maxWidth)
+                        {
+                            sb.Append("\n");
+                            row++;
+                            Width += tempWidth;
+                            tempWidth = 0;
+                        }
+                    }
+                    if (row == 1)
+                        Width = tempWidth;
+                    Newarray.Add(sb.ToString());
+                }
+            }
+            int w = Convert.ToInt32(Width)+20;
+            int h = row * 30 + 10;
+            rect.Width = w;
+            rect.Height = h;
+            return rect;
+        }
+
 
         public void Add(WMessage item)
         {
@@ -173,6 +205,21 @@ namespace WeChat.ListAdapter
         {
             this.items.AddRange(items);
             notifyDataSetChanged();
+        }
+
+        /// <summary>
+        /// 测量文字的宽
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="font"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public float CalTextWidth(Graphics g, Font font, string text)
+        {
+            StringFormat sf = StringFormat.GenericTypographic;
+            sf.FormatFlags |= StringFormatFlags.MeasureTrailingSpaces;
+            SizeF s = g.MeasureString(text, font, 0, sf);
+            return s.Width;
         }
     }
 }
