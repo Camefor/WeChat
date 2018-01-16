@@ -64,10 +64,8 @@ C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.exe
 C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.pdb
 C:\Users\yuanj\Source\Repos\WeChat\WeChat\bin\Debug\WeChat.exe
 C:\Users\yuanj\Source\Repos\WeChat\WeChat\bin\Debug\WeChat.pdb
-C:\Users\yuanj\Source\Repos\WeChat\WeChat\bin\Debug\EmojiLib.dll
 C:\Users\yuanj\Source\Repos\WeChat\WeChat\bin\Debug\WeChat.Business.dll
 C:\Users\yuanj\Source\Repos\WeChat\WeChat\bin\Debug\ThoughtWorks.QRCode.dll
-C:\Users\yuanj\Source\Repos\WeChat\WeChat\bin\Debug\EmojiLib.pdb
 C:\Users\yuanj\Source\Repos\WeChat\WeChat\bin\Debug\WeChat.Business.pdb
 C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.csprojResolveAssemblyReference.cache
 C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.LoginForm.resources
