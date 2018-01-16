@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using WeChat.Business.APP;
+using WeChat.Business.Base;
 
 namespace WeChat.Business.Model
 {
@@ -16,6 +18,7 @@ namespace WeChat.Business.Model
     * */
     public class RContact
     {
+
         public string Uin { get; set; }
         public string UserName { get; set; }
 
@@ -42,7 +45,12 @@ namespace WeChat.Business.Model
                 return source;
             return Regex.Replace(source, "<.*?>", "😃");
         }
-        public string HeadImgUrl { get; set; }
+        private string headImgUrl;
+        public string HeadImgUrl
+        {
+            get { return headImgUrl; }
+            set { if (headImgUrl == value) return; headImgUrl = value; loadImage(headImgUrl);  }
+        }
         public int ContactFlag { get; set; }
         public int MemberCount { get; set; }
         public string RemarkName { get; set; }
@@ -107,6 +115,15 @@ namespace WeChat.Business.Model
         public DateTime? LastMessageTime { get; set; }
 
         public Image HeadImage { get; set; }
+
+        public void loadImage(string img)
+        {
+            if ( API.HttpTools == null)
+                return;
+            string url = Context.root_uri + img;
+            Image image = API.HttpTools.GetResponseImage(url);
+            HeadImage = image;
+        }
 
     }
 }

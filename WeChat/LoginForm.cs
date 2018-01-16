@@ -1,5 +1,4 @@
-﻿using formSkin;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,10 +12,11 @@ using System.Windows.Forms;
 using WeChat.Business.APP;
 using WeChat.Business.Base;
 using WeChat.Business.BLL;
+using WinForm.UI.Forms;
 
 namespace WeChat
 {
-    public partial class LoginForm : FormSkin
+    public partial class LoginForm : BaseForm
     {
 
         private TaskFactory AsyncTask;

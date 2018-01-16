@@ -1,7 +1,4 @@
-﻿using formSkin;
-using formSkin.Controls;
-using formSkin.Controls._List;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,10 +14,12 @@ using WeChat.Business.BLL;
 using WeChat.Business.Model;
 using WeChat.Business.Utils;
 using WeChat.ListAdapter;
+using WinForm.UI.Controls;
+using WinForm.UI.Forms;
 
 namespace WeChat
 {
-    public partial class MainForm : FormSkin, IMessageCallBack
+    public partial class MainForm : BaseForm, IMessageCallBack
     {
 
         private RContactManager RContactManager;
@@ -61,12 +60,13 @@ namespace WeChat
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            LastRContactAdapter = new LastRContactAdapter(api);
+            LastRContactAdapter = new LastRContactAdapter();
             this.LastList.Adapter = LastRContactAdapter;
 
             HideTable();
             LastList.Dock = DockStyle.Fill;
-            pictureBoxSkin1.Selected = true;
+            LastList.Visible = true;
+            pictureBoxSkin1.IsSelected = true;
 
             //获取用户信息
             AsyncTask.StartNew(() =>
@@ -77,16 +77,18 @@ namespace WeChat
             this.ContartList.ItemClick += LastList_ItemClick;
         }
 
+
         /// <summary>
         /// listView 向单机事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void LastList_ItemClick(object sender, formSkin.Controls._ChatListBox.ChatListEventArgs e)
+        void LastList_ItemClick(object sender, WinForm.UI.Events.ItemClickEventArgs e)
         {
-            RContact rContact = e.Data as RContact;
+            RContact rContact = e.ViewHolder.UserData as RContact;
             if (this.rContact == rContact)
                 return;
+            adapter.Clear();
             this.rContact = rContact;
             this.lblOpUser.Text = rContact.NickName;
             this.lblOpUser.Visible = true;
@@ -116,7 +118,7 @@ namespace WeChat
             List<RContact> List = new List<RContact>(response.ContactList);
             LastRContactAdapter.SetItems(List);
 
-            RContactAdapter = new ListAdapter.RContactAdapter(api);
+            RContactAdapter = new ListAdapter.RContactAdapter();
             this.ContartList.Adapter = RContactAdapter;
             //加载好友信息
             AsyncTask.StartNew(() =>
@@ -150,11 +152,15 @@ namespace WeChat
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            api.MessageManager.Online = false;
-            if (api != null)
-            {
-                api.UserManager.webwxlogout();
-            }
+            this.Hide();
+            AsyncTask.StartNew(()=> {
+                api.MessageManager.Online = false;
+                if (api != null)
+                {
+                    api.UserManager.webwxlogout();
+                }
+            });
+            
 
             if (loginForm != null)
                 loginForm.Close();
@@ -173,17 +179,17 @@ namespace WeChat
         /// <param name="e"></param>
         private void pictureBoxSkin1_Click(object sender, EventArgs e)
         {
-            if (((PictureBoxSkin)sender).Selected)
+            if (((CirclePictureBox)sender).IsSelected)
                 return;
 
             foreach (Control item in panel5.Controls)
             {
-                if (item is PictureBoxSkin)
+                if (item is CirclePictureBox)
                 {
-                    ((PictureBoxSkin)item).Selected = false;
+                    ((CirclePictureBox)item).IsSelected = false;
                 }
             }
-            ((PictureBoxSkin)sender).Selected = true;
+            ((CirclePictureBox)sender).IsSelected = true;
         }
 
         private void HideTable()
@@ -203,7 +209,7 @@ namespace WeChat
         /// <param name="e"></param>
         private void pictureBoxSkin1_SelectedItem(object sender, EventArgs e)
         {
-            PictureBoxSkin view = sender as PictureBoxSkin;
+            CirclePictureBox view = sender as CirclePictureBox;
             int stap = Convert.ToInt32(view.Tag);
             HideTable();
             switch (stap)
@@ -240,19 +246,19 @@ namespace WeChat
         {
             WMessage item = state as WMessage;
             int flag = (item.isGroup) ? 2 : 1;
-            RContact contact = Context.GetRContact(flag, item.ToUserName);
-            if (contact == null)
+            if (item.IsSend)
             {
-                flag = 4;//是否为公众号
-                contact = Context.GetRContact(flag, item.ToUserName);
-                if (contact == null)
-                    return;
-            }
-
-            //判断是否为当前打开好友消息
-            if (item.ToUserName != this.rContact.UserName)
+                RContact ToUser = Context.GetRContact(flag, item.ToUserName);
+                item.SendHeadImage = this.pbHead.Image;
+            }else
             {
-                SetNotify(contact.NickName, item.Content);
+                RContact FromUser = Context.GetRContact(flag, item.FromUserName);
+                item.SendHeadImage = FromUser.HeadImage;
+                //判断是否为当前打开好友消息
+                if (this.rContact==null|| item.FromUserName != this.rContact.UserName)
+                {
+                    SetNotify(FromUser.NickName, item.Content);
+                }
             }
 
             adapter.Add(item);
@@ -306,6 +312,7 @@ namespace WeChat
             item.MsgType = 1;
             item.IsSend = true;
             item.Content = message;
+            item.SendHeadImage = this.pbHead.Image;//自己的头像
             adapter.Add(item);
             txtMessage.Text = "";
             this.fListView1.ScrollBottom();
@@ -350,5 +357,6 @@ namespace WeChat
 
         #endregion
 
+      
     }
 }

@@ -77,33 +77,37 @@ namespace WeChat.Business.BLL
                             {
                                 if (item == null) continue;
                                 RContact c = null;
-                                if (item.UserName.StartsWith("@@"))
+                                if (Context.ContactList.ContainsKey(item.UserName))
                                 {
-                                    //群
-                                    if (Context.GroupList.ContainsKey(item.UserName))
-                                    {
-                                        c = Context.GroupList[item.UserName];
-                                    }
-                                    else
-                                    {
-                                        //如果群不存在则，说明为新群
-                                        c = new RContact();
-                                        c.UserName = item.UserName;
-                                        c.NickName = item.NickName;
-                                        c.HeadImgUrl = item.HeadImgUrl;
-                                        Context.GroupList.Add(item.UserName, c);
-                                    }
-
+                                    c = Context.ContactList[item.UserName];
                                 }
-                                else
-                                {
-                                    //好友
-                                    if (Context.ContactList.ContainsKey(item.UserName))
-                                    {
-                                        c = Context.ContactList[item.UserName];
-                                    }
+                                //if (item.UserName.StartsWith("@@"))
+                                //{
+                                //    //群
+                                //    if (Context.GroupList.ContainsKey(item.UserName))
+                                //    {
+                                //        c = Context.GroupList[item.UserName];
+                                //    }
+                                //    else
+                                //    {
+                                //        //如果群不存在则，说明为新群
+                                //        c = new RContact();
+                                //        c.UserName = item.UserName;
+                                //        c.NickName = item.NickName;
+                                //        c.HeadImgUrl = item.HeadImgUrl;
+                                //        Context.GroupList.Add(item.UserName, c);
+                                //    }
 
-                                }
+                                //}
+                                //else
+                                //{
+                                //    //好友
+                                //    if (Context.ContactList.ContainsKey(item.UserName))
+                                //    {
+                                //        c = Context.ContactList[item.UserName];
+                                //    }
+
+                                //}
                                 if (c != null)
                                 {
                                     CallBack.OnNewRContact(c);//新好友

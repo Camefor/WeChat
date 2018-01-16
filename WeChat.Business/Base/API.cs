@@ -18,24 +18,28 @@ namespace WeChat.Business.Base
     * */
     public class API
     {
-        private HttpTools http;
+        private static HttpTools http;
 
         private RContactManager rContactManager;
         private UserManager userManager;
         private Imageloader imageloader;
         private MessageManager messageManager;
 
+        static API()
+        {
+            http = new HttpTools();
+        }
 
         public API()
         {
-            http = new HttpTools();
+            
             rContactManager = new RContactManager(http);
             userManager = new UserManager(http);
             imageloader = new Imageloader(http);
             messageManager = new MessageManager(http);
         }
 
-        public HttpTools HttpTools { get { return http; } }
+        public static HttpTools HttpTools { get { return http; } }
              
 
         public RContactManager RContactManager { get { return rContactManager; } }
@@ -45,6 +49,8 @@ namespace WeChat.Business.Base
         public Imageloader Imageloader { get { return imageloader; } }
 
         public MessageManager MessageManager { get { return messageManager; } }
+
+
 
     }
 }

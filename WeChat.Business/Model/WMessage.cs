@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,5 +63,9 @@ namespace WeChat.Business.Model
         public string FileContent { get; set; }
 
         public string LocalID { get; set; }
+
+        public Image SendHeadImage { get; set; }
+        public Image ToHeadImage { get; set; }
+
     }
 }

@@ -1,15 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeChat", "WeChat\WeChat.csproj", "{350B92E3-8B03-4F81-9436-00034AA28368}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeChat.Business", "WeChat.Business\WeChat.Business.csproj", "{53AA1690-6B5B-4A77-9F32-8C08A05A43DF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{40349A9F-DC66-44B8-8907-B56581F3A787}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmojiLib", "EmojiLib\EmojiLib.csproj", "{23F6ED9D-A82E-4671-BF32-18E94DE116A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +21,6 @@ Global
 		{53AA1690-6B5B-4A77-9F32-8C08A05A43DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53AA1690-6B5B-4A77-9F32-8C08A05A43DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53AA1690-6B5B-4A77-9F32-8C08A05A43DF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{40349A9F-DC66-44B8-8907-B56581F3A787}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40349A9F-DC66-44B8-8907-B56581F3A787}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40349A9F-DC66-44B8-8907-B56581F3A787}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40349A9F-DC66-44B8-8907-B56581F3A787}.Release|Any CPU.Build.0 = Release|Any CPU
-		{23F6ED9D-A82E-4671-BF32-18E94DE116A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23F6ED9D-A82E-4671-BF32-18E94DE116A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23F6ED9D-A82E-4671-BF32-18E94DE116A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23F6ED9D-A82E-4671-BF32-18E94DE116A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

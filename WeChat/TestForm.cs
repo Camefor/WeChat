@@ -14,11 +14,13 @@ namespace WeChat
 {
     public partial class TestForm : Form
     {
+        //private MessageAdapter adapter;
         private MessageAdapter adapter;
 
         public TestForm()
         {
             InitializeComponent();
+            //adapter = new MessageAdapter();
             adapter = new MessageAdapter();
             this.fListView1.Adapter = adapter;
             txtMessage.ImeMode = ImeMode.OnHalf;
@@ -30,12 +32,17 @@ namespace WeChat
             if (string.IsNullOrWhiteSpace(message))
                 return;
             WMessage item = new WMessage();
-            item.MsgType = 1;
-            item.IsSend =(new Random().Next()%2==0);
+            item.MsgType = 47;
+            //item.IsSend =(new Random().Next()%2==0);
+            item.IsSend = false;
+            item.FileContent = @"C:\Users\yuanj\Source\Repos\WeChat\WeChat\bin\Debug\cache\0qgh0knk.elb";
             item.Content = message;
             adapter.Add(item);
             txtMessage.Text = "";
             this.fListView1.ScrollBottom();
         }
+
+
+
     }
 }
