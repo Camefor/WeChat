@@ -4,6 +4,6 @@
 
 ### 效果图下功能：
 ### Login
-![image](https://github.com/YuanJianTing/WeChat/blob/master/WeChat/screenshot/login.png)
+![image](https://github.com/YuanJianTing/WeChat/blob/master/screenshot/login.png)
 ### Home
-![image](https://github.com/YuanJianTing/WeChat/blob/master/WeChat/screenshot/home.png)
+![image](https://github.com/YuanJianTing/WeChat/blob/master/screenshot/home.png)
