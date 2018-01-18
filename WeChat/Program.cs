@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WeChat.Business.Utils;
+using WeChat.API.Tools;
 using WinForm.UI;
 
 namespace WeChat
@@ -24,8 +24,11 @@ namespace WeChat
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(Program.CurrentDomain_UnhandledException);
             #endregion
+
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             Style style = FormsManager.Style;
             string path = Path.Combine(Application.StartupPath, "logo.ico");
             if (File.Exists(path))
@@ -35,8 +38,8 @@ namespace WeChat
             style.MaxBoxBackColor = Color.FromArgb(70, Color.White);
 
             Application.Run(new LoginForm());
-            //Application.Run(new TestForm());
         }
+
 
         /// <summary>
         /// 主线程异常
@@ -73,5 +76,6 @@ namespace WeChat
                 //Application.Exit();
             }
         }
+
     }
 }

@@ -9,179 +9,117 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WeChat.Business.APP;
-using WeChat.Business.Base;
-using WeChat.Business.BLL;
+using WeChat.API;
 using WinForm.UI.Forms;
 
 namespace WeChat
 {
     public partial class LoginForm : BaseForm
     {
-
-        private TaskFactory AsyncTask;
+        private WechatAPIService api;
         /// <summary>
         /// UI线程的同步上下文
         /// </summary>
         private SynchronizationContext m_SyncContext = null;
-        public API api;
-        private UserManager UserManager;
-
-
         public LoginForm()
         {
             InitializeComponent();
             //获取UI线程同步上下文
             m_SyncContext = SynchronizationContext.Current;
-            AsyncTask = new TaskFactory();
-            api = new API();
-            UserManager = api.UserManager;
-            UserManager.m_SyncContext = m_SyncContext;
+            api = new WechatAPIService();
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
             Init();
-
-
-            AsyncTask.StartNew(() =>
-            {
-                bool result = UserManager.GetUIN();
-                if (result)
-                {
-                    string url = "https://login.weixin.qq.com/l/" + Context.uuid;
-                    Bitmap bitmap = UserManager.GetQRCode(url);
-                    m_SyncContext.Post(Update, bitmap);
-                    return;
-                }
-                m_SyncContext.Post(Update, result);
-            });
+            api.CachePath = App.PATH_CACHE;
+            api.OnGetQRCodeImage += Api_OnGetQRCodeImage;
+            api.OnUserScanQRCode += Api_OnUserScanQRCode;
+            api.OnStatusChanged += Api_OnStatusChanged;
+            api.OnLoginSucess += Api_OnLoginSucess;
+            api.Start();
         }
+
+        private void Api_OnLoginSucess(WechatAPIService sender, LoginSucessEvent e)
+        {
+            m_SyncContext.Post(ShowMain,null);
+        }
+
+        private void ShowMain(object state)
+        {
+            MainForm main = new MainForm(api);
+            main.Show();
+            main.FormClosed += (obj, e) => {
+                this.Close();
+            };
+            this.Hide();
+        }
+
+        private void Api_OnStatusChanged(WechatAPIService sender, StatusChangedEvent e)
+        {
+            switch (sender.CurrentStatus)
+            {
+                case ClientStatusType.GetUUID:
+                    break;
+                case ClientStatusType.GetQRCode:
+                    break;
+                case ClientStatusType.Login:
+                    break;
+                case ClientStatusType.QRCodeScaned:
+                    m_SyncContext.Post(UpdateInfo, "请在手机上点击\"确定\"登陆");
+                    break;
+                case ClientStatusType.WeixinInit:
+                    break;
+                case ClientStatusType.SyncCheck:
+                    break;
+                case ClientStatusType.WeixinSync:
+                    break;
+                case ClientStatusType.None:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void Api_OnUserScanQRCode(WechatAPIService sender, UserScanQRCodeEvent e)
+        {
+            this.pictureBox1.Image = e.UserAvatarImage;
+            //UpdateInfo("");
+        }
+
+        private void Api_OnGetQRCodeImage(WechatAPIService sender, GetQRCodeImageEvent e)
+        {
+            this.pictureBox1.Image = e.QRImage;
+        }
+
 
         private void Init()
         {
-            Constants.PATH_INSTALL = Application.StartupPath;
-            Constants.PATH_CACHE = Constants.PATH_INSTALL + "/cache/";
-            Constants.PATH_DATA = Constants.PATH_INSTALL + "/data/";
-            if (!Directory.Exists(Constants.PATH_CACHE))
+            App.PATH_INSTALL = Application.StartupPath;
+            App.PATH_CACHE = App.PATH_INSTALL + "/cache/";
+            App.PATH_DATA = App.PATH_INSTALL + "/data/";
+            if (!Directory.Exists(App.PATH_CACHE))
             {
-                Directory.CreateDirectory(Constants.PATH_CACHE);
+                Directory.CreateDirectory(App.PATH_CACHE);
             }
-            if (!Directory.Exists(Constants.PATH_DATA))
+            if (!Directory.Exists(App.PATH_DATA))
             {
-                Directory.CreateDirectory(Constants.PATH_DATA);
+                Directory.CreateDirectory(App.PATH_DATA);
             }
-
         }
 
-        private void Update(object obj)
+
+        private void UpdateInfo(object message)
         {
-            if (obj is Bitmap)
-            {
-                Bitmap bitmap = obj as Bitmap;
-                this.pictureBox1.Image = bitmap;
-                AsynLogin.RunWorkerAsync();
-            }
-            else if (obj is bool && !((bool)obj))
-            {
-                Toast.MakeText(this, "获取二维码失败,请稍后重试").Show();
-                UpdateInfo("获取二维码失败,请稍后重试");
-            }
+            lblMessageInfo.Text = message.ToString();
         }
 
-
-
-
-        private void UpdateInfo(string message)
+        private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            lblMessageInfo.Text = message;
-        }
-
-
-
-        private void AsynLogin_DoWork(object sender, DoWorkEventArgs e)
-        {
-            int code;
-
-            while (true)
+            if (api != null)
             {
-                UserManager.WaitForLogin(out code);
-                switch (code)
-                {
-                    case 201://扫描成功
-                        this.AsynLogin.ReportProgress(1);
-                        break;
-                    case 200:
-                        //等待用户确定
-                        this.AsynLogin.ReportProgress(2);
-                        string Result = UserManager.Login();
-                        if ("success"==Result)
-                        {
-                            this.AsynLogin.ReportProgress(3);
-                            e.Result = "success";
-                            return;
-                        }
-                        else
-                        {
-                            this.AsynLogin.ReportProgress(98);
-                            e.Result = Result;
-                            return;
-                        }
-                        break;
-
-                    case 408://登陆超时
-                        this.AsynLogin.ReportProgress(0);
-                        e.Result = "登陆超时";
-                        return;
-                    default:
-                        this.AsynLogin.ReportProgress(98);
-                        e.Result = "登陆异常";
-                        return;
-                }
-            }
-
-
-        }
-
-        private void AsynLogin_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            switch (e.ProgressPercentage)
-            {
-                case 1:
-                    UpdateInfo("扫描成功");
-                    break;
-                case 2:
-                    UpdateInfo("等待用户确定");
-                    break;
-                case 3:
-                    UpdateInfo("登录成功");
-                    break;
-                case 0:
-                    UpdateInfo("登陆超时");
-                    break;
-                default:
-                    UpdateInfo("登陆异常");
-                    break;
+                api.Quit(true);
             }
         }
-
-        private void AsynLogin_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            string result = e.Result.ToString();
-            if ("success" == result)
-            {
-                MainForm form = new MainForm(this);
-                form.Show();
-                this.Hide();
-                return;
-            }
-            else 
-            {
-                Toast.MakeText(this, result,7000).Show();
-            }
-            
-
-        }
-
     }
 }

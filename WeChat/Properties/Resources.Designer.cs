@@ -73,16 +73,6 @@ namespace WeChat.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap hh {
-            get {
-                object obj = ResourceManager.GetObject("hh", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
         internal static System.Drawing.Bitmap img_add {
             get {
                 object obj = ResourceManager.GetObject("img_add", resourceCulture);
@@ -176,16 +166,6 @@ namespace WeChat.Properties {
         internal static System.Drawing.Bitmap img_search {
             get {
                 object obj = ResourceManager.GetObject("img_search", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap qr {
-            get {
-                object obj = ResourceManager.GetObject("qr", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
