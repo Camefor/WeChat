@@ -1,0 +1,225 @@
+------------------------------- 开始--------------------------------------
+--------------------------2018-01-19 11:18:00-----------------------------
+时间：2018/01/19 11:18:00
+异常信息：索引(从零开始)必须大于或等于零，且小于参数列表的大小。
+异常对象：mscorlib
+调用堆栈：   在 System.Text.StringBuilder.AppendFormatHelper(IFormatProvider provider, String format, ParamsArray args)
+   在 System.String.FormatHelper(IFormatProvider provider, String format, ParamsArray args)
+   在 System.String.Format(String format, Object[] args)
+   在 WeChat.API.Dao.MessageDao.UpdateTable(SqLiteHelper db) 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\Dao\MessageDao.cs:行号 113
+   在 WeChat.API.Dao.DaoSession.UpdateDB() 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\Dao\DaoSession.cs:行号 70
+   在 WeChat.API.Dao.DaoSession.InitDataBase(Int32 version) 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\Dao\DaoSession.cs:行号 52
+   在 WeChat.API.Dao.DaoSession..ctor(String connectionString, Int32 version) 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\Dao\DaoSession.cs:行号 28
+   在 WeChat.API.Dao.DaoMaster.newSession(String name) 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\Dao\DaoMaster.cs:行号 30
+   在 WeChat.MainForm.Api_OnGetUser(WechatAPIService sender, GetUserEvent e) 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat\MainForm.cs:行号 119
+   在 WeChat.API.WechatAPIService.HandleInit() 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\WeService\WechatAPIService.cs:行号 248
+   在 WeChat.API.WechatAPIService.HandleStatus() 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\WeService\WechatAPIService.cs:行号 186
+   在 WeChat.API.WechatAPIService.MainLoop() 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\WeService\WechatAPIService.cs:行号 165
+   在 System.Threading.ThreadHelper.ThreadStart_Context(Object state)
+   在 System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   在 System.Threading.ThreadHelper.ThreadStart()
+触发方法：System.Text.StringBuilder AppendFormatHelper(System.IFormatProvider, System.String, System.ParamsArray)
+--------------------------------结束--------------------------------------
+
+------------------------------- 开始--------------------------------------
+--------------------------2018-01-19 11:19:09-----------------------------
+时间：2018/01/19 11:19:09
+异常信息：线程间操作无效: 从不是创建控件“loadingView1”的线程访问它。
+异常对象：System.Windows.Forms
+调用堆栈：   在 System.Windows.Forms.Control.get_Handle()
+   在 System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   在 System.Windows.Forms.Control.set_Visible(Boolean value)
+   在 WinForm.UI.Controls.LoadingView.Stop()
+   在 WeChat.MainForm.Api_OnInited(WechatAPIService sender, InitedEvent e) 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat\MainForm.cs:行号 125
+   在 WeChat.API.WechatAPIService.HandleInit() 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\WeService\WechatAPIService.cs:行号 284
+   在 WeChat.API.WechatAPIService.HandleStatus() 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\WeService\WechatAPIService.cs:行号 186
+   在 WeChat.API.WechatAPIService.MainLoop() 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\WeService\WechatAPIService.cs:行号 165
+   在 System.Threading.ThreadHelper.ThreadStart_Context(Object state)
+   在 System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   在 System.Threading.ThreadHelper.ThreadStart()
+触发方法：IntPtr get_Handle()
+--------------------------------结束--------------------------------------
+
+------------------------------- 开始--------------------------------------
+--------------------------2018-01-19 11:19:21-----------------------------
+时间：2018/01/19 11:19:21
+异常信息：线程间操作无效: 从不是创建控件“loadingView1”的线程访问它。
+异常对象：System.Windows.Forms
+调用堆栈：   在 System.Windows.Forms.Control.get_Handle()
+   在 System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   在 System.Windows.Forms.Control.set_Visible(Boolean value)
+   在 WinForm.UI.Controls.LoadingView.Stop()
+   在 WeChat.MainForm.Api_OnInited(WechatAPIService sender, InitedEvent e) 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat\MainForm.cs:行号 125
+   在 WeChat.API.WechatAPIService.HandleInit() 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\WeService\WechatAPIService.cs:行号 284
+   在 WeChat.API.WechatAPIService.HandleStatus() 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\WeService\WechatAPIService.cs:行号 186
+   在 WeChat.API.WechatAPIService.MainLoop() 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\WeService\WechatAPIService.cs:行号 165
+   在 System.Threading.ThreadHelper.ThreadStart_Context(Object state)
+   在 System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   在 System.Threading.ThreadHelper.ThreadStart()
+触发方法：IntPtr get_Handle()
+--------------------------------结束--------------------------------------
+
+------------------------------- 开始--------------------------------------
+--------------------------2018-01-19 11:19:23-----------------------------
+时间：2018/01/19 11:19:23
+异常信息：线程间操作无效: 从不是创建控件“loadingView1”的线程访问它。
+异常对象：System.Windows.Forms
+调用堆栈：   在 System.Windows.Forms.Control.get_Handle()
+   在 System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   在 System.Windows.Forms.Control.set_Visible(Boolean value)
+   在 WinForm.UI.Controls.LoadingView.Stop()
+   在 WeChat.MainForm.Api_OnInited(WechatAPIService sender, InitedEvent e) 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat\MainForm.cs:行号 125
+   在 WeChat.API.WechatAPIService.HandleInit() 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\WeService\WechatAPIService.cs:行号 284
+   在 WeChat.API.WechatAPIService.HandleStatus() 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\WeService\WechatAPIService.cs:行号 186
+   在 WeChat.API.WechatAPIService.MainLoop() 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\WeService\WechatAPIService.cs:行号 165
+   在 System.Threading.ThreadHelper.ThreadStart_Context(Object state)
+   在 System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   在 System.Threading.ThreadHelper.ThreadStart()
+触发方法：IntPtr get_Handle()
+--------------------------------结束--------------------------------------
+
+------------------------------- 开始--------------------------------------
+--------------------------2018-01-19 11:19:24-----------------------------
+时间：2018/01/19 11:19:24
+异常信息：线程间操作无效: 从不是创建控件“loadingView1”的线程访问它。
+异常对象：System.Windows.Forms
+调用堆栈：   在 System.Windows.Forms.Control.get_Handle()
+   在 System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   在 System.Windows.Forms.Control.set_Visible(Boolean value)
+   在 WinForm.UI.Controls.LoadingView.Stop()
+   在 WeChat.MainForm.Api_OnInited(WechatAPIService sender, InitedEvent e) 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat\MainForm.cs:行号 125
+   在 WeChat.API.WechatAPIService.HandleInit() 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\WeService\WechatAPIService.cs:行号 284
+   在 WeChat.API.WechatAPIService.HandleStatus() 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\WeService\WechatAPIService.cs:行号 186
+   在 WeChat.API.WechatAPIService.MainLoop() 位置 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\WeService\WechatAPIService.cs:行号 165
+   在 System.Threading.ThreadHelper.ThreadStart_Context(Object state)
+   在 System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   在 System.Threading.ThreadHelper.ThreadStart()
+触发方法：IntPtr get_Handle()
+--------------------------------结束--------------------------------------
+
+------------------------------- 开始--------------------------------------
+--------------------------2018-01-19 15:52:20-----------------------------
+时间：2018/01/19 15:52:20
+异常信息：无法访问已释放的对象。
+对象名:“ShadowForm”。
+异常对象：System.Windows.Forms
+调用堆栈：   在 System.Windows.Forms.Control.CreateHandle()
+   在 System.Windows.Forms.Form.CreateHandle()
+   在 System.Windows.Forms.Control.get_Handle()
+   在 System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   在 System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   在 System.Windows.Forms.Control.set_Visible(Boolean value)
+   在 WinForm.UI.Forms.ShadowForm.Main_VisibleChanged(Object sender, EventArgs e)
+   在 System.Windows.Forms.Control.OnVisibleChanged(EventArgs e)
+   在 System.Windows.Forms.ScrollableControl.OnVisibleChanged(EventArgs e)
+   在 System.Windows.Forms.Form.OnVisibleChanged(EventArgs e)
+   在 WinForm.UI.Forms.BaseForm.OnVisibleChanged(EventArgs e)
+   在 System.Windows.Forms.Control.WmShowWindow(Message& m)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   在 System.Windows.Forms.Form.WmShowWindow(Message& m)
+   在 System.Windows.Forms.Form.WndProc(Message& m)
+   在 WinForm.UI.Forms.BaseForm.WndProc(Message& m)
+   在 System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   在 System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+触发方法：Void CreateHandle()
+--------------------------------结束--------------------------------------
+
+------------------------------- 开始--------------------------------------
+--------------------------2018-01-19 15:52:30-----------------------------
+时间：2018/01/19 15:52:30
+异常信息：无法访问已释放的对象。
+对象名:“ShadowForm”。
+异常对象：System.Windows.Forms
+调用堆栈：   在 System.Windows.Forms.Control.CreateHandle()
+   在 System.Windows.Forms.Form.CreateHandle()
+   在 System.Windows.Forms.Control.get_Handle()
+   在 System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   在 System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   在 System.Windows.Forms.Control.set_Visible(Boolean value)
+   在 WinForm.UI.Forms.ShadowForm.Main_VisibleChanged(Object sender, EventArgs e)
+   在 System.Windows.Forms.Control.OnVisibleChanged(EventArgs e)
+   在 System.Windows.Forms.ScrollableControl.OnVisibleChanged(EventArgs e)
+   在 System.Windows.Forms.Form.OnVisibleChanged(EventArgs e)
+   在 WinForm.UI.Forms.BaseForm.OnVisibleChanged(EventArgs e)
+   在 System.Windows.Forms.Control.WmShowWindow(Message& m)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   在 System.Windows.Forms.Form.WmShowWindow(Message& m)
+   在 System.Windows.Forms.Form.WndProc(Message& m)
+   在 WinForm.UI.Forms.BaseForm.WndProc(Message& m)
+   在 System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   在 System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+触发方法：Void CreateHandle()
+--------------------------------结束--------------------------------------
+
+------------------------------- 开始--------------------------------------
+--------------------------2018-01-19 15:52:45-----------------------------
+时间：2018/01/19 15:52:45
+异常信息：无法访问已释放的对象。
+对象名:“ShadowForm”。
+异常对象：System.Windows.Forms
+调用堆栈：   在 System.Windows.Forms.Control.CreateHandle()
+   在 System.Windows.Forms.Form.CreateHandle()
+   在 System.Windows.Forms.Control.get_Handle()
+   在 System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   在 System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   在 System.Windows.Forms.Control.set_Visible(Boolean value)
+   在 WinForm.UI.Forms.ShadowForm.Main_VisibleChanged(Object sender, EventArgs e)
+   在 System.Windows.Forms.Control.OnVisibleChanged(EventArgs e)
+   在 System.Windows.Forms.ScrollableControl.OnVisibleChanged(EventArgs e)
+   在 System.Windows.Forms.Form.OnVisibleChanged(EventArgs e)
+   在 WinForm.UI.Forms.BaseForm.OnVisibleChanged(EventArgs e)
+   在 System.Windows.Forms.Control.WmShowWindow(Message& m)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   在 System.Windows.Forms.Form.WmShowWindow(Message& m)
+   在 System.Windows.Forms.Form.WndProc(Message& m)
+   在 WinForm.UI.Forms.BaseForm.WndProc(Message& m)
+   在 System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   在 System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+触发方法：Void CreateHandle()
+--------------------------------结束--------------------------------------
+
+------------------------------- 开始--------------------------------------
+--------------------------2018-01-19 15:55:45-----------------------------
+时间：2018/01/19 15:55:45
+异常信息：无法访问已释放的对象。
+对象名:“ShadowForm”。
+异常对象：System.Windows.Forms
+调用堆栈：   在 System.Windows.Forms.Control.CreateHandle()
+   在 System.Windows.Forms.Form.CreateHandle()
+   在 System.Windows.Forms.Control.get_Handle()
+   在 System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+   在 System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+   在 System.Windows.Forms.Control.set_Visible(Boolean value)
+   在 WinForm.UI.Forms.ShadowForm.Main_VisibleChanged(Object sender, EventArgs e)
+   在 System.Windows.Forms.Control.OnVisibleChanged(EventArgs e)
+   在 System.Windows.Forms.ScrollableControl.OnVisibleChanged(EventArgs e)
+   在 System.Windows.Forms.Form.OnVisibleChanged(EventArgs e)
+   在 WinForm.UI.Forms.BaseForm.OnVisibleChanged(EventArgs e)
+   在 System.Windows.Forms.Control.WmShowWindow(Message& m)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   在 System.Windows.Forms.Form.WmShowWindow(Message& m)
+   在 System.Windows.Forms.Form.WndProc(Message& m)
+   在 WinForm.UI.Forms.BaseForm.WndProc(Message& m)
+   在 System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   在 System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+触发方法：Void CreateHandle()
+--------------------------------结束--------------------------------------
+

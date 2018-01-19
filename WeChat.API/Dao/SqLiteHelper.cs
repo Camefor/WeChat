@@ -124,8 +124,11 @@ namespace WeChat.API.Dao
             {
                 throw new SQLiteException("values.Length!=fieldCount");
             }
-
-            string queryString = "INSERT INTO " + tableName + " VALUES (" + "'" + values[0] + "'";
+            string queryString = string.Empty;
+            if (values[0] == null)
+                queryString = "INSERT INTO " + tableName + " VALUES (null";
+            else
+                queryString = "INSERT INTO " + tableName + " VALUES (" + "'" + values[0] + "'";
             for (int i = 1; i < values.Length; i++)
             {
                 queryString += ", " + "'" + values[i] + "'";
@@ -259,10 +262,10 @@ namespace WeChat.API.Dao
         /// <param name="colNames">Col names.</param>
         /// <param name="operations">Operations.</param>
         /// <param name="colValues">Col values.</param>
-        public SQLiteDataReader ReadTable(string tableName,  string[] colNames, string[] operations, string[] colValues)
+        public SQLiteDataReader ReadTable(string tableName, string[] colNames, string[] operations, string[] colValues)
         {
             string queryString = "SELECT *";
-            
+
             queryString += " FROM " + tableName + " WHERE " + colNames[0] + " " + operations[0] + " " + colValues[0];
             for (int i = 0; i < colNames.Length; i++)
             {
@@ -293,6 +296,8 @@ namespace WeChat.API.Dao
         {
             var cmd = new SQLiteCommand(sql, dbConnection);
             object o = cmd.ExecuteScalar();
+            if (o == null)
+                return 0;
             return int.Parse(o.ToString());
         }
         /// <summary>

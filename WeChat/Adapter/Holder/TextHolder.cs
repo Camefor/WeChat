@@ -42,7 +42,7 @@ namespace WeChat.Adapter.Holder
         internal static void DrawItem(string message, ViewHolder holder, Graphics g)
         {
             Message msg = new Message() { Content = message };
-            DrawItem(msg, holder,g);
+            DrawItem(msg, holder, g);
         }
 
 
@@ -50,9 +50,10 @@ namespace WeChat.Adapter.Holder
         {
             string content = msg.Content;
             bool IsSend = msg.IsSend;
+
             content = content.Replace("&lt;", "<").Replace("&gt;", ">");
             Size size = GraphicsUtils.GetStringWidth(content, g, font, 350);
-            holder.bounds.Height = size.Height + 20;
+
             g.SmoothingMode = SmoothingMode.AntiAlias;
             Rectangle point = holder.bounds;
             Point[] points = GetPolygon(point, IsSend);
@@ -69,11 +70,42 @@ namespace WeChat.Adapter.Holder
                     rect = new Rectangle(70, point.Y + 10, size.Width + 15, size.Height + 15);
                 }
                 GraphicsUtils.FillRoundRectangle(g, brushes, rect, 4);
-                brushes.Color = TextColor;
-                g.DrawString(content, font, brushes, rect, StringFormat);
+                List<string> emojis = IsEmoji(content);
+                if (emojis.Count > 0)
+                {
+                    DrawEmoji(g,content, emojis, rect);
+                }
+                else
+                {
+                    brushes.Color = TextColor;
+                    g.DrawString(content, font, brushes, rect, StringFormat);
+                }
 
+                holder.bounds.Height = rect.Height + 20;
             }
             g.SmoothingMode = SmoothingMode.None;
+        }
+
+        private static void DrawEmoji(Graphics g,string content, List<string> emojis, Rectangle rect)
+        {
+            Point point = new Point();
+            point.X = rect.X+5;
+            point.Y = rect.Y + 4;
+            foreach (string item in emojis)
+            {
+                if (string.IsNullOrEmpty(item))
+                    continue;
+                Image image = EmojiTools.GetBitmap(item);
+                g.DrawImageUnscaled(image, point);
+                point.X += image.Width;
+            }
+            
+        }
+
+        private static List<string> IsEmoji(string content)
+        {
+            List<string> emojis = EmojiTools.IsContainsEmoji(content);
+            return emojis;
         }
 
 

@@ -9,5 +9,7 @@ namespace WeChat.API.RPC
     public class SendMsgResponse
     {
         public BaseResponse BaseResponse;
+        public string MsgID;
+        public string LocalID;
     }
 }

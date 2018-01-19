@@ -14,3 +14,16 @@ C:\Users\yuanj\Source\WeChat\WeChat\bin\Debug\System.Data.SQLite.dll
 C:\Users\yuanj\Source\Repos\WeChat\WeChat\bin\Debug\WeChat.exe.config
 C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.exe
 C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.pdb
+C:\Users\yuanj\Source\Repos\WeChat\WeChat\bin\Debug\WeChat.exe
+C:\Users\yuanj\Source\Repos\WeChat\WeChat\bin\Debug\WeChat.pdb
+C:\Users\yuanj\Source\Repos\WeChat\WeChat\bin\Debug\WeChat.API.dll
+C:\Users\yuanj\Source\Repos\WeChat\WeChat\bin\Debug\System.Data.SQLite.dll
+C:\Users\yuanj\Source\Repos\WeChat\WeChat\bin\Debug\WeChat.API.pdb
+C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.csprojResolveAssemblyReference.cache
+C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.LoginForm.resources
+C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.MainForm.resources
+C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.Properties.Resources.resources
+C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.csproj.GenerateResource.Cache
+C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.ImageForm.resources
+C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.FaceForm.resources
+C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.TestForm1.resources

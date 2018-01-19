@@ -57,11 +57,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapter\Holder\ClownHolder.cs" />
+    <Compile Include="Adapter\Holder\ImageHolder.cs" />
     <Compile Include="Adapter\Holder\TextHolder.cs" />
     <Compile Include="Adapter\LastRContactAdapter.cs" />
     <Compile Include="Adapter\MessageAdapter.cs" />
     <Compile Include="Adapter\RContactAdapter.cs" />
     <Compile Include="App.cs" />
+    <Compile Include="Controls\WeTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FaceForm.Designer.cs">
+      <DependentUpon>FaceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageForm.Designer.cs">
+      <DependentUpon>ImageForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,7 +92,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestForm1.Designer.cs">
+      <DependentUpon>TestForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\EmojiTools.cs" />
     <Compile Include="Utils\GraphicsUtils.cs" />
+    <EmbeddedResource Include="FaceForm.resx">
+      <DependentUpon>FaceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageForm.resx">
+      <DependentUpon>ImageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,6 +122,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TestForm1.resx">
+      <DependentUpon>TestForm1.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -114,6 +146,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />
+    <Content Include="Resources\img_emoji_2.png" />
+    <Content Include="Resources\img_btn_pan.png" />
+    <Content Include="Resources\img_emoji.png" />
+    <Content Include="Resources\img_download.png" />
+    <Content Include="Resources\img_download_move.png" />
+    <Content Include="Resources\img_enlarge.png" />
+    <Content Include="Resources\img_enlarge_move.png" />
+    <Content Include="Resources\img_face.png" />
+    <Content Include="Resources\img_face_move.png" />
+    <Content Include="Resources\img_narrow.png" />
+    <Content Include="Resources\img_narrow_move.png" />
+    <Content Include="Resources\img_rotate.png" />
+    <Content Include="Resources\img_rotate_move.png" />
     <None Include="Resources\default_head.png" />
     <None Include="Resources\img_public_tab_no.png" />
     <None Include="Resources\img_public_tab.png" />

@@ -31,6 +31,7 @@ namespace WeChat.Adapter
         public override void GetView(int position, ViewHolder holder, Graphics g)
         {
             Message obj = GetItem(position);
+            holder.UserData = obj;
             Rectangle rec = Rectangle.Empty;
             Contact user = null;
             if (obj.IsSend)
@@ -64,7 +65,8 @@ namespace WeChat.Adapter
                     TextHolder.DrawItem("【语音消息】MsgType=" + obj.MsgType, holder, g);
                     break;
                 case 3:
-                    TextHolder.DrawItem("【图片消息】MsgType=" + obj.MsgType, holder, g);
+                    ImageHolder.DrawItem(obj,holder,g);
+                    //TextHolder.DrawItem("【图片消息】MsgType=" + obj.MsgType, holder, g);
                     break;
                 case 47:
                     ClownHolder.DrawItem(obj, holder, g);

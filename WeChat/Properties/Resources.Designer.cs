@@ -93,6 +93,86 @@ namespace WeChat.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap img_download {
+            get {
+                object obj = ResourceManager.GetObject("img_download", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap img_download_move {
+            get {
+                object obj = ResourceManager.GetObject("img_download_move", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap img_emoji {
+            get {
+                object obj = ResourceManager.GetObject("img_emoji", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap img_emoji_2 {
+            get {
+                object obj = ResourceManager.GetObject("img_emoji_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap img_enlarge {
+            get {
+                object obj = ResourceManager.GetObject("img_enlarge", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap img_enlarge_move {
+            get {
+                object obj = ResourceManager.GetObject("img_enlarge_move", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap img_face {
+            get {
+                object obj = ResourceManager.GetObject("img_face", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap img_face_move {
+            get {
+                object obj = ResourceManager.GetObject("img_face_move", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap img_Friends_tab {
             get {
                 object obj = ResourceManager.GetObject("img_Friends_tab", resourceCulture);
@@ -143,6 +223,26 @@ namespace WeChat.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap img_narrow {
+            get {
+                object obj = ResourceManager.GetObject("img_narrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap img_narrow_move {
+            get {
+                object obj = ResourceManager.GetObject("img_narrow_move", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap img_public_tab {
             get {
                 object obj = ResourceManager.GetObject("img_public_tab", resourceCulture);
@@ -156,6 +256,26 @@ namespace WeChat.Properties {
         internal static System.Drawing.Bitmap img_public_tab_no {
             get {
                 object obj = ResourceManager.GetObject("img_public_tab_no", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap img_rotate {
+            get {
+                object obj = ResourceManager.GetObject("img_rotate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap img_rotate_move {
+            get {
+                object obj = ResourceManager.GetObject("img_rotate_move", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

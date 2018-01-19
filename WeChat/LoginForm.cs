@@ -66,7 +66,7 @@ namespace WeChat
                 case ClientStatusType.Login:
                     break;
                 case ClientStatusType.QRCodeScaned:
-                    m_SyncContext.Post(UpdateInfo, "请在手机上点击\"确定\"登陆");
+                    m_SyncContext.Post(UpdateInfo, "请在手机上点击\"登陆\"按钮");
                     break;
                 case ClientStatusType.WeixinInit:
                     break;

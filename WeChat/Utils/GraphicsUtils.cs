@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,6 +40,12 @@ namespace WeChat.Utils
         /// <returns></returns>
         public static Size GetStringWidth(string text, Graphics g, Font font, int MaxWidth)
         {
+            //过滤 emoji
+            List<string> emojis = EmojiTools.IsContainsEmoji(text);
+            foreach (string item in emojis)
+            {
+                text=text.Replace(item,"呵A");
+            }
             SizeF size = g.MeasureString(text, font, MaxWidth);
             return size.ToSize();
         }
@@ -113,5 +121,27 @@ namespace WeChat.Utils
             roundedRect.CloseFigure();
             return roundedRect;
         }
+
+
+        /// <summary>
+        /// 根据图形获取图形的扩展名
+        /// </summary>
+        /// <param name="p_Image">图形</param>
+        /// <returns>扩展名</returns>
+        public static string GetImageExtension(Image p_Image)
+        {
+            Type Type = typeof(ImageFormat);
+            System.Reflection.PropertyInfo[] _ImageFormatList = Type.GetProperties(BindingFlags.Static | BindingFlags.Public);
+            for (int i = 0; i != _ImageFormatList.Length; i++)
+            {
+                ImageFormat _FormatClass = (ImageFormat)_ImageFormatList[i].GetValue(null, null);
+                if (_FormatClass.Guid.Equals(p_Image.RawFormat.Guid))
+                {
+                    return _ImageFormatList[i].Name;
+                }
+            }
+            return "";
+        }
+
     }
 }

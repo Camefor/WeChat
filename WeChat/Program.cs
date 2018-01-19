@@ -37,7 +37,8 @@ namespace WeChat
             style.MinBoxBackColor = Color.FromArgb(70, Color.White);
             style.MaxBoxBackColor = Color.FromArgb(70, Color.White);
 
-            Application.Run(new LoginForm());
+            //Application.Run(new LoginForm());
+            Application.Run(new TestForm1());
         }
 
 

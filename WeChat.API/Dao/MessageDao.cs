@@ -29,14 +29,14 @@ namespace WeChat.API.Dao
         /// <param name="FileName"></param>
         /// <param name="MsgType"></param>
         /// <param name="FileSize"></param>
-        public void InsertMessage(Message msg,string Seq)
+        public void InsertMessage(Message msg, string Seq)
         {
             bool IsSend = msg.IsSend;
             string Content = msg.Content;
             string FileName = msg.fileName;
             int MsgType = msg.MsgType;
             string FileSize = msg.FileSize;
-            object[] values = { Seq, Content, IsSend, FileName,DateTime.Now, MsgType, FileSize };
+            object[] values = { null, Seq, Content, IsSend, FileName, DateTime.Now, MsgType, FileSize, msg.MsgId };
             Helper.InsertValues(TABLE_NAME, values);
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace WeChat.API.Dao
         public List<Message> GetMessage(string FormUser)
         {
             List<Message> list = new List<Message>();
-            string sql = string.Format("select * from {0} where Seq={1} order by CreateTime asc", TABLE_NAME, FormUser);
+            string sql = string.Format("select * from {0} where Seq={1} order by ID asc", TABLE_NAME, FormUser);
             DataTable dt = Helper.GetTable(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -60,14 +60,16 @@ namespace WeChat.API.Dao
                     string FileName = item["FileName"].ToString();
                     int MsgType = Convert.ToInt32(item["MsgType"]);
                     string FileSize = item["FileSize"].ToString();
-                    Message message = CreateMessage(Seq, Content, IsSend, FileName, MsgType, FileSize);
+                    DateTime CreateTime = Convert.ToDateTime(item["CreateTime"]);
+                    string MsgId = item["MsgId"].ToString();
+                    Message message = CreateMessage(Seq, Content, IsSend, FileName, MsgType, FileSize, MsgId);
                     list.Add(message);
                 }
             }
             return list;
         }
 
-        private Message CreateMessage(string Seq, string Content, bool IsSend, string FileName, int MsgType, string FileSize)
+        private Message CreateMessage(string Seq, string Content, bool IsSend, string FileName, int MsgType, string FileSize,string MsgId)
         {
             Message msg = new Message();
             msg.Content = Content;
@@ -75,6 +77,7 @@ namespace WeChat.API.Dao
             msg.FileSize = FileSize;
             msg.MsgType = MsgType;
             msg.IsSend = IsSend;
+            msg.MsgId = MsgId;
             Contact remote = WechatAPIService.GetContactBySeq(Seq);
             msg.Remote = remote;
             msg.Mime = WechatAPIService.Self;
@@ -91,18 +94,27 @@ namespace WeChat.API.Dao
         {
             Helper = db;
             string[] colNames = {
-                "Seq","Content","IsSend","FileName","CreateTime","MsgType","FileSize"
+                "ID", "Seq","Content","IsSend","FileName","CreateTime","MsgType","FileSize"
             };
             string[] colTypes = {
-                "TEXT","TEXT","Boolean","TEXT","TEXT","INTEGER","TEXT"
+                "INTEGER PRIMARY KEY","TEXT","TEXT","Boolean","TEXT","TEXT","INTEGER","TEXT"
             };
             db.CreateTable(TABLE_NAME, colNames, colTypes);
         }
 
         public static void UpdateTable(SqLiteHelper db)
         {
-            db.ExecuteScalar("DROP TABLE " + TABLE_NAME);
-            CreateTable(db);
+            int result = db.ExecuteScalar("SELECT count(*) from sqlite_master where type='table' and name='" + TABLE_NAME + "'");
+            if (result != 0)
+            {
+                //db.ExecuteScalar(" DROP TABLE " + TABLE_NAME);
+                string Template = "ALTER TABLE {0} ADD {1} {2}";
+                StringBuilder sb = new StringBuilder();
+                sb.AppendFormat(Template, TABLE_NAME, "MsgId", "TEXT");
+
+                db.ExecuteSql(sb.ToString());
+            }
+            //CreateTable(db);
         }
 
 

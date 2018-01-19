@@ -195,8 +195,9 @@ namespace WeChat.API
 
         private void HandleSync()
         {
-            if (mSyncKey == null)
+            if (mSyncKey == null)//LogHandler
             {
+                LogHandler.i("WechatAPIService... HandleSync() ... mSyncKey==null");
                 CurrentStatus = ClientStatusType.GetUUID;
                 return;
             }
@@ -208,6 +209,7 @@ namespace WeChat.API
 
             if (checkResult.retcode != null && checkResult.retcode != "0")
             {
+                LogHandler.i("WechatAPIService... HandleSync() ... checkResult="+ checkResult.retcode+","+ checkResult.selector);
                 CurrentStatus = ClientStatusType.GetUUID;
                 return;
             }
@@ -259,12 +261,14 @@ namespace WeChat.API
                 }
                 else
                 {
+                    LogHandler.i("WechatAPIService", "HandleInit()", statusNotifyRep);
                     CurrentStatus = ClientStatusType.GetUUID;
                     return;
                 }
             }
             else
             {
+                LogHandler.i("WechatAPIService", "HandleInit()", initResult);
                 CurrentStatus = ClientStatusType.GetUUID;
                 return;
             }
@@ -349,6 +353,7 @@ namespace WeChat.API
             }
             else
             {
+                LogHandler.i("WechatAPIService", "HandleQRCodeScaned()",loginResult);
                 CurrentStatus = ClientStatusType.GetUUID;
             }
         }
@@ -373,6 +378,7 @@ namespace WeChat.API
             }
             else
             {
+                LogHandler.i("WechatAPIService", "HandleLogin()", loginResult);
                 CurrentStatus = ClientStatusType.GetUUID;
             }
         }
@@ -392,6 +398,7 @@ namespace WeChat.API
             }
             else
             {
+                LogHandler.i("WechatAPIService", "HandleGetQRCode()", QRCodeImg);
                 CurrentStatus = ClientStatusType.GetUUID;
             }
         }
@@ -463,7 +470,16 @@ namespace WeChat.API
         {
             return client.GetImage(ImageUrl);
         }
-
+        /// <summary>
+        /// 获取聊天图片
+        /// </summary>
+        /// <param name="ImageUrl"></param>
+        /// <returns></returns>
+        public Image GetMsgImage(string ImageUrl)
+        {
+            ImageUrl += "&skey="+ mBaseReq.Skey;
+            return GetImage(ImageUrl);
+        }
 
         /// <summary>
         /// 异步发送消息

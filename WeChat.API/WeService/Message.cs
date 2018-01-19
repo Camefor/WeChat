@@ -29,6 +29,7 @@ namespace WeChat.API
         public string FileSize { get; set; }
         public Contact Remote { get; set; }
         public Contact Mime { get; set; }
+        public string MsgId { get; set; }
 
     }
 
@@ -81,9 +82,22 @@ namespace WeChat.API
                 case 1:
                     ret.Content = msg.Content;
                     break;
+                case 3:
+                    
+                    string sevePath = Path.Combine(m_Service.CachePath, DateTime.Now.Ticks + ".bmp");
+                    ret.fileName = sevePath;
+                    ret.FileSize = msg.FileSize;
+                    string thumbnail = string.Format("/cgi-bin/mmwebwx-bin/webwxgetmsgimg?MsgID={0}&type=slave", msg.MsgId);
+                    ret.Content = string.Format("/cgi-bin/mmwebwx-bin/webwxgetmsgimg?MsgID={0}", msg.MsgId);
+
+                    Image image = m_Service.GetMsgImage(thumbnail);
+                    if (image == null)  
+                        break;
+                    image.Save(sevePath);
+                    break;
                 case 47:
                     //下载图片
-                    string sevePath = Path.Combine(m_Service.CachePath, Path.GetRandomFileName());
+                    sevePath = Path.Combine(m_Service.CachePath, Path.GetRandomFileName());
                     ret.fileName = sevePath;
                     ret.FileSize = msg.FileSize;
                     if (string.IsNullOrEmpty(msg.Content))
@@ -92,12 +106,13 @@ namespace WeChat.API
                     string url = XMLTools.GetImageUrl(msg.Content);
                     if (string.IsNullOrEmpty(url))
                         break;
-                    Image image = m_Service.GetImage(url);
+                    image = m_Service.GetImage(url);
                     if (image == null)
                         break;
                     image.Save(sevePath);
                     break;
                 default:
+                    ret.Content = msg.Content;
                     break;
             }
             if (ret == null)
@@ -108,6 +123,7 @@ namespace WeChat.API
             ret.FromContactID = msg.FromUserName;
             ret.ToContactD = msg.ToUserName;
             ret.Mime = WechatAPIService.Self;
+            ret.MsgId = msg.MsgId;
             if (msg.MsgType != 51)
                 DaoMaster.GetSession().GetMessageDao().InsertMessage(ret, remote.Seq);
 

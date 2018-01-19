@@ -118,37 +118,73 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="img_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="img_search" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="img_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img_bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="img_rotate_move" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_rotate_move.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="img_Friends_tab" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img_Friends_tab.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="img_download_move" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_download_move.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="img_Friends_tab_no" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img_Friends_tab_no.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="img_last_tab" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img_last_tab.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="img_last_tab_no" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img_last_tab_no.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="img_menu_no" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img_menu_no.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="img_face_move" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_face_move.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="img_public_tab" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\img_public_tab.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="img_public_tab_no" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img_public_tab_no.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="img_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="img_search" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img_search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="img_narrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_narrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_download" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_download.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_Friends_tab" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_Friends_tab.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_menu_no" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_menu_no.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_face" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_face.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_rotate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_rotate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="default_head" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\default_head.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_enlarge" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_enlarge.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_Friends_tab_no" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_Friends_tab_no.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_enlarge_move" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_enlarge_move.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_narrow_move" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_narrow_move.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_last_tab" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_last_tab.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_public_tab_no" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_public_tab_no.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_last_tab_no" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_last_tab_no.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_emoji" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_emoji.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_emoji_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_emoji_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

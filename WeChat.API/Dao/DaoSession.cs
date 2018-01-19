@@ -47,7 +47,7 @@ namespace WeChat.API.Dao
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     int OldVersion = Convert.ToInt32(dt.Rows[0]["VALUE"]);
-                    if (OldVersion > version)
+                    if (OldVersion < version)
                     {
                         UpdateDB();
                         db.UpdateValues(TABLE_NAME, new string[] { "VALUE" }, new string[] { version + "" }, "KEY", "version", "=");

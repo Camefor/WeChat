@@ -1,7 +1,6 @@
 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\obj\Debug\WeChat.API.csprojResolveAssemblyReference.cache
 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\bin\Debug\WeChat.API.dll
 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\bin\Debug\WeChat.API.pdb
-C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\bin\Debug\Newtonsoft.Json.dll
 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\obj\Debug\WeChat.API.dll
 C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\obj\Debug\WeChat.API.pdb
 C:\Users\yuanj\Source\WeChat\WeChat.API\bin\Debug\WeChat.API.dll
@@ -10,3 +9,4 @@ C:\Users\yuanj\Source\WeChat\WeChat.API\obj\Debug\WeChat.API.csprojResolveAssemb
 C:\Users\yuanj\Source\WeChat\WeChat.API\obj\Debug\WeChat.API.dll
 C:\Users\yuanj\Source\WeChat\WeChat.API\obj\Debug\WeChat.API.pdb
 C:\Users\yuanj\Source\WeChat\WeChat.API\bin\Debug\System.Data.SQLite.dll
+C:\Users\yuanj\Source\Repos\WeChat\WeChat.API\bin\Debug\System.Data.SQLite.dll

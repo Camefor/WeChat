@@ -8,3 +8,13 @@ C:\Users\yuanj\Source\WeChat\WeChat.Test\bin\Debug\WeChat.API.pdb
 C:\Users\yuanj\Source\WeChat\WeChat.Test\obj\Debug\WeChat.Test.csprojResolveAssemblyReference.cache
 C:\Users\yuanj\Source\WeChat\WeChat.Test\obj\Debug\WeChat.Test.exe
 C:\Users\yuanj\Source\WeChat\WeChat.Test\obj\Debug\WeChat.Test.pdb
+C:\Users\yuanj\Source\Repos\WeChat\WeChat.Test\bin\Debug\WeChat.Test.exe.config
+C:\Users\yuanj\Source\Repos\WeChat\WeChat.Test\obj\Debug\WeChat.Test.exe
+C:\Users\yuanj\Source\Repos\WeChat\WeChat.Test\obj\Debug\WeChat.Test.pdb
+C:\Users\yuanj\Source\Repos\WeChat\WeChat.Test\bin\Debug\WeChat.Test.exe
+C:\Users\yuanj\Source\Repos\WeChat\WeChat.Test\bin\Debug\WeChat.Test.pdb
+C:\Users\yuanj\Source\Repos\WeChat\WeChat.Test\bin\Debug\WeChat.API.dll
+C:\Users\yuanj\Source\Repos\WeChat\WeChat.Test\bin\Debug\System.Data.SQLite.dll
+C:\Users\yuanj\Source\Repos\WeChat\WeChat.Test\bin\Debug\Newtonsoft.Json.dll
+C:\Users\yuanj\Source\Repos\WeChat\WeChat.Test\bin\Debug\WeChat.API.pdb
+C:\Users\yuanj\Source\Repos\WeChat\WeChat.Test\obj\Debug\WeChat.Test.csprojResolveAssemblyReference.cache

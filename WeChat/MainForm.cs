@@ -43,6 +43,7 @@ namespace WeChat
             adapter = new MessageAdapter();
             this.fListView1.Adapter = adapter;
             txtMessage.ImeMode = ImeMode.OnHalf;
+            this.fListView1.IsMouseFeedBack = false;
         }
         public MainForm(WechatAPIService api) : this()
         {
@@ -51,6 +52,7 @@ namespace WeChat
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            loadingView1.Start();
             api.OnGetUser += Api_OnGetUser;
             api.OnInited += Api_OnInited;
             api.OnAddMessage += Api_OnAddMessage;
@@ -90,8 +92,23 @@ namespace WeChat
                 return;
             string Seq = openContact.Seq;
             MessageDao MsgDao = DaoMaster.GetSession().GetMessageDao();
-            List<API.Message> message= MsgDao.GetMessage(Seq);
-            adapter.AddItems(message);
+            List<API.Message> message = MsgDao.GetMessage(Seq);
+            m_SyncContext.Post(UpdateMessageList, message);
+        }
+
+        private void UpdateMessageList(object state)
+        {
+            if (state is API.Message)
+            {
+                adapter.Add((API.Message)state);
+            }
+            else
+            {
+                List<API.Message> message = state as List<API.Message>;
+
+                adapter.AddItems(message);
+            }
+            this.fListView1.ScrollBottom();
         }
 
         private void Api_OnGetUser(WechatAPIService sender, GetUserEvent e)
@@ -105,6 +122,8 @@ namespace WeChat
         {
             LastRContactAdapter.AddItems(e.LastContact);
             RContactAdapter.AddItems(sender.Contacts);
+            m_SyncContext.Post((obj) => loadingView1.Stop(), null);
+
         }
         /// <summary>
         /// 更新当前用户信息
@@ -124,12 +143,26 @@ namespace WeChat
             //判断发送消息人是否为当前聊天用户
             if (this.openContact != null && openContact.ID == msg.Remote.ID)
             {
-                adapter.Add(msg);
-                this.fListView1.ScrollBottom();
-            }
-            //保存本地数据库
-        }
+                m_SyncContext.Post(UpdateMessageList, msg);
 
+            }
+            if (msg.MsgType == 3)
+            {
+                AsyncTask.StartNew(() => DownloadImage(msg));
+            }
+
+        }
+        /// <summary>
+        /// 下载图片
+        /// </summary>
+        private void DownloadImage(API.Message msg)
+        {
+            string url = string.Format("/cgi-bin/mmwebwx-bin/webwxgetmsgimg?MsgID={0}", msg.MsgId);
+            Image image = api.GetMsgImage(url);
+            string fileName = msg.MsgId + ".bmp";
+            string path = Path.Combine(App.PATH_CACHE, fileName);
+            image.Save(path);
+        }
 
         private void btnSend_Click(object sender, EventArgs e)
         {
@@ -150,13 +183,30 @@ namespace WeChat
             txtMessage.Clear();
             this.fListView1.ScrollBottom();
 
-            MessageDao MsgDao = DaoMaster.GetSession().GetMessageDao();
-            MsgDao.InsertMessage(msg, openContact.Seq);
         }
 
         public void SendMsg(string ToUserName, string Content)
         {
+            Contact ToUser = WechatAPIService.GetContact(ToUserName);
+            API.Message msg = new API.Message()
+            {
+                MsgType = 1,
+                Content = Content,
+                IsSend = true,
+                Remote = ToUser,
+                Mime = WechatAPIService.Self,
+            };
             Task<SendMsgResponse> task = api.SendMsgAsync(ToUserName, Content);
+            task.ContinueWith((obj) =>
+            {
+                SendMsgResponse res = obj.Result;
+                if (res != null && !string.IsNullOrEmpty(res.MsgID))
+                {
+                    MessageDao MsgDao = DaoMaster.GetSession().GetMessageDao();
+                    msg.MsgId = res.MsgID;
+                    MsgDao.InsertMessage(msg, openContact.Seq);
+                }
+            });
         }
 
         #region table
@@ -248,8 +298,41 @@ namespace WeChat
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            notifyIcon1.Dispose();
             this.Hide();
             DaoMaster.Close();
+        }
+        /// <summary>
+        /// 聊天记录点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void fListView1_ItemClick(object sender, WinForm.UI.Events.ItemClickEventArgs e)
+        {
+            API.Message msg = e.ViewHolder.UserData as API.Message;
+            if (msg.MsgType == 3)//图片消息
+            {
+                string fileName = msg.MsgId + ".bmp";
+                string path = Path.Combine(App.PATH_CACHE, fileName);
+                ImageForm form = new ImageForm();
+                form.Show(path);
+            }
+        }
+
+        private void btnFace_Click(object sender, EventArgs e)
+        {
+            //Point faceLoca= btnFace.Location;
+            //Point point= PointToScreen(faceLoca);
+            Point point = Control.MousePosition;
+            FaceForm.GetFaceForm().Show(point, (DialogResult, obj) => {
+
+                if (DialogResult == DialogResult.OK)
+                {
+                    this.txtMessage.AppendText(obj);
+                }
+
+            });
+
         }
     }
 }

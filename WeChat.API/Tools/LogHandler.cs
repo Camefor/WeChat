@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -104,6 +105,42 @@ namespace WeChat.API.Tools
             sb.Append("\n触发方法：" + e.TargetSite);
 
             WriteLog(LogFile.Error, sb.ToString());
+        }
+
+
+        public static void i(string ClassName, string Method, params object[] param) {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("ClassName："+ ClassName);
+            sb.AppendLine("Method：" + Method);
+            if (param != null)
+            {
+                foreach (var item in param)
+                {
+                    sb.Append(param+",");
+                }
+            }
+            i(sb.ToString());
+        }
+
+        public static void i(string ClassName, string Method, object param)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("ClassName：" + ClassName);
+            sb.AppendLine("Method：" + Method);
+            if (param != null)
+            {
+                Type tp= param.GetType();
+                FieldInfo[] Fields= tp.GetFields();
+                foreach (FieldInfo item in Fields)
+                {
+                    sb.AppendLine(item.Name+"=" + item.GetValue(param));
+                }
+            }
+            else
+            {
+                sb.AppendLine("param：null");
+            }
+            i(sb.ToString());
         }
 
     }

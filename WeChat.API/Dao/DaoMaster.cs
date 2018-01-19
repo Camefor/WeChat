@@ -18,7 +18,7 @@ namespace WeChat.API.Dao
         /// <summary>
         /// 数据库版本
         /// </summary>
-        public const int SCHEMA_VERSION = 1;
+        public const int SCHEMA_VERSION = 3;
 
         public static string dbName;
 
