@@ -25,12 +25,10 @@ namespace WeChat.Adapter
         private Font font;
         private Color SubItemSelectColor = Color.FromArgb(198, 197, 197);
         private Color ItemMouseOnColor = Color.FromArgb(205, 209, 216);
-        private Font LastFont;
 
         public RContactAdapter()
         {
             font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            LastFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             defaultImage = Resources.default_head;
         }
 
@@ -63,8 +61,20 @@ namespace WeChat.Adapter
 
             using (SolidBrush brushes = new SolidBrush(Color.Black))
             {
-                g.DrawString(StringUtils.StringTruncat(item.NickName, 9, "..."), font, brushes, rec.X + rec.Width + 6, rec.Y + (15));
+                g.DrawString(GetDisplayName(item), font, brushes, rec.X + rec.Width + 6, rec.Y + (15));
             }
         }
+
+        private string GetDisplayName(Contact item)
+        {
+            string RemarkName = string.Empty;
+            if (string.IsNullOrEmpty(item.RemarkName))
+                RemarkName = item.NickName;
+            else
+                RemarkName = item.RemarkName;
+
+            return StringUtils.StringTruncat(RemarkName, 9, "...");
+        }
+
     }
 }

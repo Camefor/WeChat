@@ -26,6 +26,7 @@ namespace WeChat
         private MessageAdapter adapter;
         private Contact openContact;
         private TaskFactory AsyncTask;
+        private MusicForm musicForm;
         /// <summary>
         /// UI线程的同步上下文
         /// </summary>
@@ -44,6 +45,7 @@ namespace WeChat
             this.fListView1.Adapter = adapter;
             txtMessage.ImeMode = ImeMode.OnHalf;
             this.fListView1.IsMouseFeedBack = false;
+            musicForm = new MusicForm();
         }
         public MainForm(WechatAPIService api) : this()
         {
@@ -167,24 +169,85 @@ namespace WeChat
         private void btnSend_Click(object sender, EventArgs e)
         {
             string message = txtMessage.Text;
-            if (string.IsNullOrWhiteSpace(message))
+            string rtf = txtMessage.Rtf;
+            if (string.IsNullOrWhiteSpace(message) && string.IsNullOrEmpty(rtf))
                 return;
-
-            SendMsg(this.openContact.ID, message);
-            API.Message msg = new API.Message()
+            this.btnSend.Enabled = false;
+            if (!string.IsNullOrEmpty(message))
             {
-                MsgType = 1,
-                Content = message,
-                IsSend = true,
-                Remote = openContact,
-                Mime = WechatAPIService.Self
-            };
-            adapter.Add(msg);
+                SendMsg(this.openContact.ID, message);
+                API.Message msg = new API.Message()
+                {
+                    MsgType = 1,
+                    Content = message,
+                    IsSend = true,
+                    Remote = openContact,
+                    Mime = WechatAPIService.Self
+                };
+                adapter.Add(msg);
+            }
+            List<Image> imageList = txtMessage.GetImages();
+            if (imageList != null && imageList.Count > 0)
+            {
+                List<API.Message> messageList = new List<API.Message>();
+                foreach (Image item in imageList)
+                {
+                    string filePath = Path.Combine(App.PATH_CACHE, Path.GetRandomFileName() + ".bmp");
+                    item.Save(filePath);
+                    SendImg(this.openContact.ID, filePath);
+                    messageList.Add(new API.Message()
+                    {
+                        MsgType = 3,
+                        fileName = filePath,
+                        IsSend = true,
+                        Remote = openContact,
+                        Mime = WechatAPIService.Self
+                    });
+                }
+                adapter.AddItems(messageList);
+            }
+
             txtMessage.Clear();
             this.fListView1.ScrollBottom();
+            this.btnSend.Enabled = true;
+        }
+
+        #region 发送消息
+        /// <summary>
+        /// 发送图片消息
+        /// </summary>
+        /// <param name="ToUserName"></param>
+        /// <param name="path"></param>
+        public void SendImg(string ToUserName, string filePath)
+        {
+            Contact ToUser = WechatAPIService.GetContact(ToUserName);
+            API.Message msg = new API.Message()
+            {
+                MsgType = 3,
+                fileName = filePath,
+                IsSend = true,
+                Remote = ToUser,
+                Mime = WechatAPIService.Self,
+            };
+            Task<SendMsgImgResponse> task = api.SendImgAsync(ToUserName, filePath);
+            task.ContinueWith((obj) =>
+            {
+                SendMsgImgResponse res = obj.Result;
+                if (res != null && !string.IsNullOrEmpty(res.MsgID))
+                {
+                    MessageDao MsgDao = DaoMaster.GetSession().GetMessageDao();
+                    msg.MsgId = res.MsgID;
+                    MsgDao.InsertMessage(msg, openContact.Seq);
+                }
+            });
 
         }
 
+        /// <summary>
+        /// 发送文本消息
+        /// </summary>
+        /// <param name="ToUserName"></param>
+        /// <param name="Content"></param>
         public void SendMsg(string ToUserName, string Content)
         {
             Contact ToUser = WechatAPIService.GetContact(ToUserName);
@@ -208,6 +271,7 @@ namespace WeChat
                 }
             });
         }
+        #endregion
 
         #region table
 
@@ -312,10 +376,27 @@ namespace WeChat
             API.Message msg = e.ViewHolder.UserData as API.Message;
             if (msg.MsgType == 3)//图片消息
             {
-                string fileName = msg.MsgId + ".bmp";
-                string path = Path.Combine(App.PATH_CACHE, fileName);
+                string path = string.Empty;
+                if (!msg.IsSend)
+                {
+                    string fileName = msg.MsgId + ".bmp";
+                    path = Path.Combine(App.PATH_CACHE, fileName);
+                }else
+                {
+                    path = msg.fileName;
+                }
                 ImageForm form = new ImageForm();
                 form.Show(path);
+            }else if (msg.MsgType == 34)//语音消息
+            {
+                string path= msg.fileName;
+                musicForm.Player(path);
+                adapter.Play();
+                AsyncTask.StartNew(() =>
+                {
+                    Thread.Sleep((int)msg.VoiceLength / 1000);
+                    adapter.Stop();
+                });
             }
         }
 
@@ -324,7 +405,8 @@ namespace WeChat
             //Point faceLoca= btnFace.Location;
             //Point point= PointToScreen(faceLoca);
             Point point = Control.MousePosition;
-            FaceForm.GetFaceForm().Show(point, (DialogResult, obj) => {
+            FaceForm.GetFaceForm().Show(point, (DialogResult, obj) =>
+            {
 
                 if (DialogResult == DialogResult.OK)
                 {

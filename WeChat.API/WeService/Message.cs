@@ -30,7 +30,7 @@ namespace WeChat.API
         public Contact Remote { get; set; }
         public Contact Mime { get; set; }
         public string MsgId { get; set; }
-
+        public long VoiceLength { get; set; }
     }
 
     public class MessageFactory
@@ -95,6 +95,15 @@ namespace WeChat.API
                         break;
                     image.Save(sevePath);
                     break;
+                case 34:
+                    sevePath = Path.Combine(m_Service.CachePath, DateTime.Now.Ticks + ".MP3");
+                    ret.fileName = sevePath;
+                    ret.FileSize = msg.FileSize;
+                    ret.VoiceLength = msg.VoiceLength;
+                    string url = string.Format("/cgi-bin/mmwebwx-bin/webwxgetvoice?MsgID={0}", msg.MsgId);
+                    m_Service.GetMsgFile(url, sevePath);
+
+                    break;
                 case 47:
                     //下载图片
                     sevePath = Path.Combine(m_Service.CachePath, Path.GetRandomFileName());
@@ -103,7 +112,7 @@ namespace WeChat.API
                     if (string.IsNullOrEmpty(msg.Content))
                         break;
 
-                    string url = XMLTools.GetImageUrl(msg.Content);
+                    url = XMLTools.GetImageUrl(msg.Content);
                     if (string.IsNullOrEmpty(url))
                         break;
                     image = m_Service.GetImage(url);

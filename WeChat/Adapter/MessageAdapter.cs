@@ -28,6 +28,7 @@ namespace WeChat.Adapter
             defaultImage = Resources.default_head;
         }
 
+
         public override void GetView(int position, ViewHolder holder, Graphics g)
         {
             Message obj = GetItem(position);
@@ -62,7 +63,8 @@ namespace WeChat.Adapter
                     TextHolder.DrawItem(obj, holder, g);
                     break;
                 case 34:
-                    TextHolder.DrawItem("【语音消息】MsgType=" + obj.MsgType, holder, g);
+                    VoiceHolder.DrawItem(obj, holder, g,owner);
+                    //TextHolder.DrawItem("【语音消息】MsgType=" + obj.MsgType, holder, g);
                     break;
                 case 3:
                     ImageHolder.DrawItem(obj,holder,g);
@@ -98,5 +100,17 @@ namespace WeChat.Adapter
                     break;
             }
         }
+
+
+        public void Play()
+        {
+            VoiceHolder.Play();
+        }
+
+        public void Stop()
+        {
+            VoiceHolder.Stop();
+        }
+
     }
 }

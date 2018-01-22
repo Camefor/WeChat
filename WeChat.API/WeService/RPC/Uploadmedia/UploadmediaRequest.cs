@@ -11,9 +11,9 @@ namespace WeChat.API.RPC
         public int UploadType;
         public BaseRequest BaseRequest;
         public long ClientMediaId;
-        public int TotalLen;
+        public long TotalLen;
         public int StartPos;
-        public int DataLen;
+        public long DataLen;
         public int MediaType;
         public string FromUserName;
         public string ToUserName;

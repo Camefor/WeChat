@@ -27,3 +27,9 @@ C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.csproj.GenerateResour
 C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.ImageForm.resources
 C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.FaceForm.resources
 C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.TestForm1.resources
+C:\Users\yuanj\Source\Repos\WeChat\WeChat\bin\Debug\Interop.WMPLib.dll
+C:\Users\yuanj\Source\Repos\WeChat\WeChat\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\Interop.WMPLib.dll
+C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\AxInterop.WMPLib.dll
+C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.csproj.ResolveComReference.cache
+C:\Users\yuanj\Source\Repos\WeChat\WeChat\obj\Debug\WeChat.MusicForm.resources

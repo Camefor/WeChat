@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.fListView1 = new WinForm.UI.Controls.FListView();
-            this.weTextBox1 = new WeChat.Controls.WeTextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.weTextBox1 = new WeChat.Controls.WeTextBox();
             this.SuspendLayout();
             // 
             // fListView1
@@ -41,33 +41,36 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fListView1.BackColor = System.Drawing.Color.White;
             this.fListView1.ItemDivider = 10;
-            this.fListView1.Location = new System.Drawing.Point(110, 15);
+            this.fListView1.Location = new System.Drawing.Point(208, 15);
             this.fListView1.Margin = new System.Windows.Forms.Padding(0);
             this.fListView1.MouseHolder = null;
             this.fListView1.Name = "fListView1";
             this.fListView1.ScrollBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(201)))), ((int)(((byte)(198)))));
             this.fListView1.SelectHolder = null;
-            this.fListView1.Size = new System.Drawing.Size(544, 460);
+            this.fListView1.Size = new System.Drawing.Size(544, 384);
             this.fListView1.TabIndex = 1;
             this.fListView1.Text = "fListView1";
-            // 
-            // weTextBox1
-            // 
-            this.weTextBox1.Location = new System.Drawing.Point(110, 478);
-            this.weTextBox1.Name = "weTextBox1";
-            this.weTextBox1.Size = new System.Drawing.Size(544, 80);
-            this.weTextBox1.TabIndex = 2;
-            this.weTextBox1.Text = "";
+            this.fListView1.ItemClick += new WinForm.UI.Controls.FListView.ItemClickHandler(this.fListView1_ItemClick);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(660, 535);
+            this.button1.Location = new System.Drawing.Point(677, 493);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // weTextBox1
+            // 
+            this.weTextBox1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.weTextBox1.Location = new System.Drawing.Point(208, 407);
+            this.weTextBox1.Name = "weTextBox1";
+            this.weTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedHorizontal;
+            this.weTextBox1.Size = new System.Drawing.Size(544, 80);
+            this.weTextBox1.TabIndex = 2;
+            this.weTextBox1.Text = "";
             // 
             // TestForm1
             // 

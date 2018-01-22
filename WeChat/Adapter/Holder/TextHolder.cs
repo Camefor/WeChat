@@ -109,7 +109,7 @@ namespace WeChat.Adapter.Holder
         }
 
 
-        private static Point[] GetPolygon(Rectangle point, bool IsSend)
+        public static Point[] GetPolygon(Rectangle point, bool IsSend)
         {
             Point[] points = new Point[3];
             int x = 0, y = 0;

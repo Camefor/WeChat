@@ -52,5 +52,6 @@ namespace WeChat.API
         }
 
         public string Uin { get; set; }
+        public string DisplayName { get; set; }
     }
 }

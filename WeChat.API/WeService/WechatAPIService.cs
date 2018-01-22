@@ -482,7 +482,18 @@ namespace WeChat.API
         }
 
         /// <summary>
-        /// 异步发送消息
+        /// 获取聊天文件
+        /// </summary>
+        /// <param name="Url"></param>
+        /// <returns></returns>
+        public void GetMsgFile(string Url,string SevePath)
+        {
+            Url += "&skey=" + mBaseReq.Skey;
+            client.GetFile(Url, SevePath);
+        }
+
+        /// <summary>
+        /// 异步发送文本消息
         /// </summary>
         /// <param name="FromUserName"></param>
         /// <param name="ToUserName"></param>
@@ -503,6 +514,34 @@ namespace WeChat.API
             return val;
         }
 
+        /// <summary>
+        /// 异步发送图片消息
+        /// </summary>
+        /// <param name="FromUserName"></param>
+        /// <param name="ToUserName"></param>
+        /// <param name="Content"></param>
+        /// <returns></returns>
+        public async Task<SendMsgImgResponse> SendImgAsync(string ToUserName, string fileName)
+        {
+            string FromUserName = Self.ID;
+            SendMsgImgResponse val = await Task.Run(() =>
+            {
+                FileInfo file = new FileInfo(fileName);
+                //上传资源
+                UploadmediaResponse upload= client.Uploadmedia(FromUserName, ToUserName, "WU_FILE_0", "image/png",2,4, file, mPass_ticket, mBaseReq);
+                if (upload != null)
+                {
+                    ImgMsg msg = new ImgMsg();
+                    msg.FromUserName = FromUserName;
+                    msg.ToUserName = ToUserName;
+                    msg.MediaId = upload.MediaId;
+                    SendMsgImgResponse rep = client.SendMsgImg(msg, mPass_ticket, mBaseReq);
+                    return rep;
+                }
+                return null;
+            });
+            return val;
+        }
 
     }
 }

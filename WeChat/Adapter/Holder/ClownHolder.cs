@@ -53,6 +53,7 @@ namespace WeChat.Adapter.Holder
             }
             g.DrawImage(image, rec, new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
             holder.bounds.Height = rec.Height + 10;
+            image.Dispose();
         }
     }
 }

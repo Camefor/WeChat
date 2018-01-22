@@ -47,7 +47,7 @@
             this.MessageContext = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btnFace = new WinForm.UI.Controls.CirclePictureBox();
-            this.txtMessage = new System.Windows.Forms.TextBox();
+            this.txtMessage = new WeChat.Controls.WeTextBox();
             this.fListView1 = new WinForm.UI.Controls.FListView();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -297,7 +297,6 @@
             this.txtMessage.Margin = new System.Windows.Forms.Padding(0);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtMessage.Size = new System.Drawing.Size(505, 47);
             this.txtMessage.TabIndex = 1;
             // 
@@ -482,7 +481,7 @@
         private System.Windows.Forms.Panel MessageContext;
         private System.Windows.Forms.Label lblOpUser;
         private WinForm.UI.Controls.FListView fListView1;
-        private System.Windows.Forms.TextBox txtMessage;
+        private WeChat.Controls.WeTextBox txtMessage;
         private WinForm.UI.Controls.FButton btnSend;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label1;

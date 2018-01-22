@@ -14,6 +14,7 @@ using WeChat.API.Tools;
 using WeChat.API.RPC;
 using Newtonsoft.Json;
 using WeChat.API.Wx;
+using System.IO.Compression;
 
 namespace WeChat.API
 {
@@ -144,6 +145,39 @@ namespace WeChat.API
             }
             return null;
         }
+
+        /// <summary>
+        /// 获取文件
+        /// </summary>
+        /// <param name="imageUrl"></param>
+        /// <returns></returns>
+        public void GetFile(string Url,string SevePath)
+        {
+            string url = string.Empty;
+            if (Url.StartsWith("https://", StringComparison.CurrentCultureIgnoreCase) ||
+                Url.StartsWith("http://", StringComparison.CurrentCultureIgnoreCase))
+            {
+                url = Url;
+            }
+            else
+                url = this.root_uri + Url;
+            SetHttpHeader("Accept", "image/webp,image/*,*/*;q=0.8");
+            mHttpClient.DefaultRequestHeaders.Referrer = new Uri(this.root_uri);
+            try
+            {
+                HttpResponseMessage response = mHttpClient.GetAsync(new Uri(url)).Result;
+                var bytes = response.Content.ReadAsByteArrayAsync().Result;
+                if (bytes != null && bytes.Length > 0)
+                {
+                    File.WriteAllBytes(SevePath, bytes);
+                }
+            }
+            catch
+            {
+                InitHttpClient();
+            }
+        }
+
 
         /// <summary>
         /// 登录检查
@@ -391,19 +425,19 @@ namespace WeChat.API
         }
 
 
-        public UploadmediaResponse Uploadmedia(string fromUserName, string toUserName, string id, string mime_type, int uploadType, int mediaType, byte[] buffer, string fileName, string pass_ticket, BaseRequest baseReq)
+        public UploadmediaResponse Uploadmedia(string fromUserName, string toUserName, string id, string mime_type, int uploadType, int mediaType, FileInfo file, string pass_ticket, BaseRequest baseReq)
         {
             UploadmediaRequest req = new UploadmediaRequest();
             req.BaseRequest = baseReq;
             req.ClientMediaId = getR();
-            req.DataLen = buffer.Length;
+            req.DataLen = file.Length;
             req.StartPos = 0;
-            req.TotalLen = buffer.Length;
+            req.TotalLen = file.Length;
             req.MediaType = mediaType;
             req.FromUserName = fromUserName;
             req.ToUserName = toUserName;
             req.UploadType = uploadType;
-            req.FileMd5 = Util.getMD5(buffer);
+            req.FileMd5 = Util.GetMD5HashFromFile(file.FullName);
 
             string url = "https://file.wx.qq.com/cgi-bin/mmwebwx-bin/webwxuploadmedia?f=json";
             if (root_uri.Contains("wx2.qq.com"))
@@ -419,22 +453,23 @@ namespace WeChat.API
             }
             var dataTicketCookie = GetCookie("webwx_data_ticket");
 
-            var dataContent = new MultipartFormDataContent();
-            dataContent.Add(new StringContent(id), "id");
-            dataContent.Add(new StringContent(fileName), "name");
-            dataContent.Add(new StringContent(mime_type), "type");
-            dataContent.Add(new StringContent("Thu Mar 17 2016 14:35:28 GMT+0800 (中国标准时间)"), "lastModifiedDate");
-            dataContent.Add(new StringContent(buffer.Length.ToString()), "size");
-            dataContent.Add(new StringContent(mt), "mediatype");
-            dataContent.Add(new StringContent(requestJson), "uploadmediarequest");
-            dataContent.Add(new StringContent(dataTicketCookie.Value), "webwx_data_ticket");
-            dataContent.Add(new StringContent(pass_ticket), "pass_ticket");
-            dataContent.Add(new ByteArrayContent(buffer), "filename", fileName + "\r\n Content - Type: " + mime_type);
-
             try
             {
-                var response = mHttpClient.PostAsync(url, dataContent).Result;
-                string repJsonStr = response.Content.ReadAsStringAsync().Result;
+                Dictionary<string, string> map = new Dictionary<string, string>();
+                map.Add("id", id);
+                map.Add("name", file.Name);
+                map.Add("type", mime_type);
+                map.Add("lastModifiedDate", DateTime.Now.ToString());
+                map.Add("size", file.Length + "");
+                map.Add("mediatype", mt);
+                map.Add("uploadmediarequest", requestJson);
+                map.Add("pass_ticket", pass_ticket);
+                map.Add("webwx_data_ticket", dataTicketCookie.Value);
+
+                string repJsonStr = PostFile(url, file, map, mime_type);
+
+                //var response = mHttpClient.PostAsync(url, dataContent).Result;
+                //string repJsonStr = response.Content.ReadAsStringAsync().Result;
                 var rep = JsonConvert.DeserializeObject<UploadmediaResponse>(repJsonStr);
                 return rep;
             }
@@ -585,5 +620,97 @@ namespace WeChat.API
         {
             return System.Web.HttpUtility.UrlEncode(url);
         }
+
+
+        private string PostFile(string url, FileInfo fileInfo, Dictionary<string, string> param, string type)
+        {
+            try
+            {
+                Uri uri = new Uri(url);
+                HttpWebRequest myHttpWebRequest = (HttpWebRequest)WebRequest.CreateDefault(uri);
+                myHttpWebRequest.Method = "POST";
+                myHttpWebRequest.AllowAutoRedirect = true;
+                myHttpWebRequest.KeepAlive = true;
+                myHttpWebRequest.Accept = "*/*";
+                myHttpWebRequest.Referer = "https://wx2.qq.com/";
+                myHttpWebRequest.Timeout = 1000 * 60 + 2;
+                myHttpWebRequest.Proxy = null;
+                myHttpWebRequest.AllowWriteStreamBuffering = true;
+                myHttpWebRequest.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
+                myHttpWebRequest.Headers.Add("Origin", "https://wx2.qq.com");
+                myHttpWebRequest.Headers.Add("Accept-Encoding", "gzip, deflate, sdch, br");
+                myHttpWebRequest.Headers.Add("Accept-Language", "zh-CN,zh;q=0.8");
+
+                StringBuilder postData = new StringBuilder();
+
+                string boundary = DateTime.Now.Ticks.ToString("X"); // 随机分隔线
+
+
+                string dataFormdataTemplate = "\r\n------" + boundary + "\r\nContent-Disposition: form-data; name=\"{0}\"\r\n\r\n{1}";
+
+                foreach (string item in param.Keys)
+                {
+                    string paramStr = string.Format(dataFormdataTemplate, item, param[item]);
+                    postData.Append(paramStr);
+                }
+                //文件数据模板  
+                string fileFormdataTemplate = "\r\n------" + boundary + "\r\nContent-Disposition:form-data; name=\"filename\"; filename=\"" + fileInfo.Name + "\"";
+
+                postData.Append(fileFormdataTemplate);
+                postData.Append("\r\nContent-Type: " + type + "\r\n\r\n");
+
+                byte[] endBoundaryBytes = Encoding.UTF8.GetBytes("\r\n------" + boundary + "--\r\n");
+                byte[] buff = Encoding.UTF8.GetBytes(postData.ToString());
+                FileStream fs = new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read);
+                byte[] bArr = new byte[fs.Length];
+                fs.Read(bArr, 0, bArr.Length);
+                fs.Close();
+
+
+                myHttpWebRequest.ContentType = "multipart/form-data;boundary=----" + boundary;
+                myHttpWebRequest.ContentLength = buff.Length + bArr.Length + endBoundaryBytes.Length;
+
+                Stream postStream = myHttpWebRequest.GetRequestStream();
+
+                postStream.Write(buff, 0, buff.Length);
+                postStream.Write(bArr, 0, bArr.Length);
+                postStream.Write(endBoundaryBytes, 0, endBoundaryBytes.Length);
+                postStream.Close();
+
+                string strResult = "";
+                System.IO.StreamReader sr = null;
+                HttpWebResponse response = (HttpWebResponse)myHttpWebRequest.GetResponse();
+                //判断响应的信息是否为压缩信息 若为压缩信息解压后返回
+                if (response.ContentEncoding == "gzip")
+                {
+                    MemoryStream ms = new MemoryStream();
+                    GZipStream zip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);
+                    byte[] buffer = new byte[1024];
+                    int l = zip.Read(buffer, 0, buffer.Length);
+                    while (l > 0)
+                    {
+                        ms.Write(buffer, 0, l);
+                        l = zip.Read(buffer, 0, buffer.Length);
+                    }
+                    ms.Dispose();
+                    zip.Dispose();
+                    strResult = Encoding.UTF8.GetString(ms.ToArray());
+                    response.Close();
+                    return strResult;
+
+                }
+                sr = new System.IO.StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                strResult = sr.ReadToEnd();
+                sr.Close();
+                response.Close();
+                return strResult;
+            }
+            catch (Exception ex)
+            {
+                return string.Empty;
+            }
+
+        }
+
     }
 }

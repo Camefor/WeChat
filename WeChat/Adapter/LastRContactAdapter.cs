@@ -62,7 +62,7 @@ namespace WeChat.Adapter
             g.DrawImage(defaultImage, rec, new Rectangle(0, 0, defaultImage.Width, defaultImage.Height), GraphicsUnit.Pixel);
             using (SolidBrush brushes = new SolidBrush(Color.Black))
             {
-                g.DrawString(StringUtils.StringTruncat(item.NickName, 9, "..."), font, brushes, rec.X + rec.Width + 6, rec.Y + 5);
+                g.DrawString(GetDisplayName(item), font, brushes, rec.X + rec.Width + 6, rec.Y + 5);
                 if (!string.IsNullOrEmpty(item.LastMessage))
                 {
                     brushes.Color = Color.FromArgb(153, 153, 153);
@@ -76,5 +76,18 @@ namespace WeChat.Adapter
                 }
             }
         }
+
+        private string GetDisplayName(Contact item)
+        {
+            string RemarkName = string.Empty;
+            if (string.IsNullOrEmpty(item.RemarkName))
+                RemarkName = item.NickName;
+            else
+                RemarkName = item.RemarkName;
+
+            return StringUtils.StringTruncat(RemarkName, 9, "...");
+        }
+
+
     }
 }

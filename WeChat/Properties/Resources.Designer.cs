@@ -243,6 +243,26 @@ namespace WeChat.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap img_play_voice {
+            get {
+                object obj = ResourceManager.GetObject("img_play_voice", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap img_play_voice_mime {
+            get {
+                object obj = ResourceManager.GetObject("img_play_voice_mime", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap img_public_tab {
             get {
                 object obj = ResourceManager.GetObject("img_public_tab", resourceCulture);
@@ -286,6 +306,26 @@ namespace WeChat.Properties {
         internal static System.Drawing.Bitmap img_search {
             get {
                 object obj = ResourceManager.GetObject("img_search", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap img_voice {
+            get {
+                object obj = ResourceManager.GetObject("img_voice", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap img_voice_mime {
+            get {
+                object obj = ResourceManager.GetObject("img_voice_mime", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
