@@ -54,6 +54,7 @@ namespace WeChat
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            loadingView1.BringToFront();
             loadingView1.Start();
             api.OnGetUser += Api_OnGetUser;
             api.OnInited += Api_OnInited;

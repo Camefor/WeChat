@@ -32,12 +32,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.pictureBoxSkin1 = new WinForm.UI.Controls.CirclePictureBox();
+            this.pictureBoxSkin2 = new WinForm.UI.Controls.CirclePictureBox();
+            this.pictureBoxSkin3 = new WinForm.UI.Controls.CirclePictureBox();
+            this.pictureBoxSkin4 = new WinForm.UI.Controls.CirclePictureBox();
+            this.pbHead = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.ContartList = new WinForm.UI.Controls.FListView();
             this.LastList = new WinForm.UI.Controls.FListView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.textBoxSkin1 = new WinForm.UI.Controls.FTextBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.loadingView1 = new WinForm.UI.Controls.LoadingView();
             this.btnSend = new WinForm.UI.Controls.FButton();
@@ -45,33 +52,26 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblOpUser = new System.Windows.Forms.Label();
             this.MessageContext = new System.Windows.Forms.Panel();
+            this.fListView1 = new WinForm.UI.Controls.FListView();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btnFace = new WinForm.UI.Controls.CirclePictureBox();
             this.txtMessage = new WeChat.Controls.WeTextBox();
-            this.fListView1 = new WinForm.UI.Controls.FListView();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxSkin1 = new WinForm.UI.Controls.CirclePictureBox();
-            this.pictureBoxSkin2 = new WinForm.UI.Controls.CirclePictureBox();
-            this.pictureBoxSkin3 = new WinForm.UI.Controls.CirclePictureBox();
-            this.pictureBoxSkin4 = new WinForm.UI.Controls.CirclePictureBox();
-            this.pbHead = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.MessageContext.SuspendLayout();
-            this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFace)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSkin1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSkin2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSkin3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSkin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHead)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.panel6.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel4.SuspendLayout();
+            this.MessageContext.SuspendLayout();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFace)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -96,251 +96,6 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(58, 171);
             this.panel5.TabIndex = 5;
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(231)))));
-            this.panel2.Controls.Add(this.pictureBox3);
-            this.panel2.Controls.Add(this.panel6);
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Location = new System.Drawing.Point(60, 1);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(250, 639);
-            this.panel2.TabIndex = 1;
-            // 
-            // panel6
-            // 
-            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel6.Controls.Add(this.ContartList);
-            this.panel6.Controls.Add(this.LastList);
-            this.panel6.Location = new System.Drawing.Point(1, 61);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(247, 577);
-            this.panel6.TabIndex = 0;
-            // 
-            // ContartList
-            // 
-            this.ContartList.Adapter = null;
-            this.ContartList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ContartList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ContartList.Location = new System.Drawing.Point(0, 148);
-            this.ContartList.MouseHolder = null;
-            this.ContartList.Name = "ContartList";
-            this.ContartList.ScrollBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(201)))), ((int)(((byte)(198)))));
-            this.ContartList.SelectHolder = null;
-            this.ContartList.Size = new System.Drawing.Size(247, 77);
-            this.ContartList.TabIndex = 6;
-            this.ContartList.Text = "fListView1";
-            this.ContartList.Visible = false;
-            this.ContartList.ItemClick += new WinForm.UI.Controls.FListView.ItemClickHandler(this.LastList_ItemClick);
-            // 
-            // LastList
-            // 
-            this.LastList.Adapter = null;
-            this.LastList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LastList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.LastList.Location = new System.Drawing.Point(0, 23);
-            this.LastList.MouseHolder = null;
-            this.LastList.Name = "LastList";
-            this.LastList.ScrollBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(201)))), ((int)(((byte)(198)))));
-            this.LastList.SelectHolder = null;
-            this.LastList.Size = new System.Drawing.Size(247, 77);
-            this.LastList.TabIndex = 5;
-            this.LastList.Text = "fListView1";
-            this.LastList.ItemClick += new WinForm.UI.Controls.FListView.ItemClickHandler(this.LastList_ItemClick);
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.textBoxSkin1);
-            this.panel3.Controls.Add(this.pictureBox2);
-            this.panel3.Location = new System.Drawing.Point(8, 21);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(182, 25);
-            this.panel3.TabIndex = 3;
-            // 
-            // textBoxSkin1
-            // 
-            this.textBoxSkin1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.textBoxSkin1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(215)))), ((int)(((byte)(214)))));
-            this.textBoxSkin1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxSkin1.Location = new System.Drawing.Point(3, 4);
-            this.textBoxSkin1.Name = "textBoxSkin1";
-            this.textBoxSkin1.Size = new System.Drawing.Size(148, 16);
-            this.textBoxSkin1.TabIndex = 1;
-            this.textBoxSkin1.WatermarkText = "搜索";
-            // 
-            // notifyIcon1
-            // 
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "微 信";
-            this.notifyIcon1.Visible = true;
-            // 
-            // loadingView1
-            // 
-            this.loadingView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(187)))), ((int)(((byte)(7)))));
-            this.loadingView1.Location = new System.Drawing.Point(360, 250);
-            this.loadingView1.Name = "loadingView1";
-            this.loadingView1.Size = new System.Drawing.Size(120, 120);
-            this.loadingView1.TabIndex = 4;
-            this.loadingView1.Text = "loadingView1";
-            // 
-            // btnSend
-            // 
-            this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSend.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnSend.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSend.ForeColor = System.Drawing.Color.White;
-            this.btnSend.Location = new System.Drawing.Point(451, 77);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(90, 28);
-            this.btnSend.TabIndex = 2;
-            this.btnSend.Text = "发送";
-            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
-            // 
-            // panel4
-            // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.BackgroundImage = global::WeChat.Properties.Resources.img_bg;
-            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.lblOpUser);
-            this.panel4.Controls.Add(this.MessageContext);
-            this.panel4.Location = new System.Drawing.Point(310, 27);
-            this.panel4.Margin = new System.Windows.Forms.Padding(0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(550, 613);
-            this.panel4.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Location = new System.Drawing.Point(0, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(547, 1);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "label1";
-            // 
-            // lblOpUser
-            // 
-            this.lblOpUser.AutoSize = true;
-            this.lblOpUser.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblOpUser.Location = new System.Drawing.Point(7, 7);
-            this.lblOpUser.Name = "lblOpUser";
-            this.lblOpUser.Size = new System.Drawing.Size(164, 25);
-            this.lblOpUser.TabIndex = 1;
-            this.lblOpUser.Text = "你点赞的样子好帅";
-            this.lblOpUser.Visible = false;
-            // 
-            // MessageContext
-            // 
-            this.MessageContext.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MessageContext.Controls.Add(this.fListView1);
-            this.MessageContext.Controls.Add(this.panel7);
-            this.MessageContext.Location = new System.Drawing.Point(1, 35);
-            this.MessageContext.Margin = new System.Windows.Forms.Padding(0);
-            this.MessageContext.Name = "MessageContext";
-            this.MessageContext.Size = new System.Drawing.Size(549, 578);
-            this.MessageContext.TabIndex = 0;
-            this.MessageContext.Visible = false;
-            // 
-            // panel7
-            // 
-            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel7.BackColor = System.Drawing.Color.White;
-            this.panel7.Controls.Add(this.btnFace);
-            this.panel7.Controls.Add(this.btnSend);
-            this.panel7.Controls.Add(this.txtMessage);
-            this.panel7.Location = new System.Drawing.Point(2, 463);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(544, 114);
-            this.panel7.TabIndex = 3;
-            // 
-            // btnFace
-            // 
-            this.btnFace.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFace.Image = global::WeChat.Properties.Resources.img_face;
-            this.btnFace.IsSelected = false;
-            this.btnFace.Location = new System.Drawing.Point(18, 3);
-            this.btnFace.MouseMoveImage = global::WeChat.Properties.Resources.img_face_move;
-            this.btnFace.Name = "btnFace";
-            this.btnFace.SelectedImage = null;
-            this.btnFace.Size = new System.Drawing.Size(23, 23);
-            this.btnFace.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.btnFace.TabIndex = 3;
-            this.btnFace.TabStop = false;
-            this.btnFace.Click += new System.EventHandler(this.btnFace_Click);
-            // 
-            // txtMessage
-            // 
-            this.txtMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtMessage.Location = new System.Drawing.Point(20, 28);
-            this.txtMessage.Margin = new System.Windows.Forms.Padding(0);
-            this.txtMessage.Multiline = true;
-            this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(505, 47);
-            this.txtMessage.TabIndex = 1;
-            // 
-            // fListView1
-            // 
-            this.fListView1.Adapter = null;
-            this.fListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.fListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.fListView1.ItemDivider = 10;
-            this.fListView1.Location = new System.Drawing.Point(2, 0);
-            this.fListView1.Margin = new System.Windows.Forms.Padding(0);
-            this.fListView1.MouseHolder = null;
-            this.fListView1.Name = "fListView1";
-            this.fListView1.ScrollBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(201)))), ((int)(((byte)(198)))));
-            this.fListView1.SelectHolder = null;
-            this.fListView1.Size = new System.Drawing.Size(544, 460);
-            this.fListView1.TabIndex = 0;
-            this.fListView1.Text = "fListView1";
-            this.fListView1.ItemClick += new WinForm.UI.Controls.FListView.ItemClickHandler(this.fListView1_ItemClick);
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.pictureBox3.Image = global::WeChat.Properties.Resources.img_add;
-            this.pictureBox3.Location = new System.Drawing.Point(206, 21);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox3.TabIndex = 4;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox2.Image = global::WeChat.Properties.Resources.img_search;
-            this.pictureBox2.Location = new System.Drawing.Point(155, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(23, 23);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
             // 
             // pictureBoxSkin1
             // 
@@ -412,6 +167,253 @@
             this.pbHead.TabIndex = 0;
             this.pbHead.TabStop = false;
             // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(231)))));
+            this.panel2.Controls.Add(this.pictureBox3);
+            this.panel2.Controls.Add(this.panel6);
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Location = new System.Drawing.Point(60, 1);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(250, 639);
+            this.panel2.TabIndex = 1;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.pictureBox3.Image = global::WeChat.Properties.Resources.img_add;
+            this.pictureBox3.Location = new System.Drawing.Point(206, 21);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox3.TabIndex = 4;
+            this.pictureBox3.TabStop = false;
+            // 
+            // panel6
+            // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel6.Controls.Add(this.ContartList);
+            this.panel6.Controls.Add(this.LastList);
+            this.panel6.Location = new System.Drawing.Point(1, 61);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(247, 577);
+            this.panel6.TabIndex = 0;
+            // 
+            // ContartList
+            // 
+            this.ContartList.Adapter = null;
+            this.ContartList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ContartList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ContartList.Location = new System.Drawing.Point(0, 148);
+            this.ContartList.MouseHolder = null;
+            this.ContartList.Name = "ContartList";
+            this.ContartList.ScrollBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(201)))), ((int)(((byte)(198)))));
+            this.ContartList.SelectHolder = null;
+            this.ContartList.Size = new System.Drawing.Size(247, 77);
+            this.ContartList.TabIndex = 6;
+            this.ContartList.Text = "fListView1";
+            this.ContartList.Visible = false;
+            this.ContartList.ItemClick += new WinForm.UI.Controls.FListView.ItemClickHandler(this.LastList_ItemClick);
+            // 
+            // LastList
+            // 
+            this.LastList.Adapter = null;
+            this.LastList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LastList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.LastList.Location = new System.Drawing.Point(0, 23);
+            this.LastList.MouseHolder = null;
+            this.LastList.Name = "LastList";
+            this.LastList.ScrollBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(201)))), ((int)(((byte)(198)))));
+            this.LastList.SelectHolder = null;
+            this.LastList.Size = new System.Drawing.Size(247, 77);
+            this.LastList.TabIndex = 5;
+            this.LastList.Text = "fListView1";
+            this.LastList.ItemClick += new WinForm.UI.Controls.FListView.ItemClickHandler(this.LastList_ItemClick);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.textBoxSkin1);
+            this.panel3.Controls.Add(this.pictureBox2);
+            this.panel3.Location = new System.Drawing.Point(8, 21);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(182, 25);
+            this.panel3.TabIndex = 3;
+            // 
+            // textBoxSkin1
+            // 
+            this.textBoxSkin1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.textBoxSkin1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(215)))), ((int)(((byte)(214)))));
+            this.textBoxSkin1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxSkin1.Location = new System.Drawing.Point(3, 4);
+            this.textBoxSkin1.Name = "textBoxSkin1";
+            this.textBoxSkin1.Size = new System.Drawing.Size(148, 16);
+            this.textBoxSkin1.TabIndex = 1;
+            this.textBoxSkin1.WatermarkText = "搜索";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox2.Image = global::WeChat.Properties.Resources.img_search;
+            this.pictureBox2.Location = new System.Drawing.Point(155, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 2;
+            this.pictureBox2.TabStop = false;
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "微 信";
+            this.notifyIcon1.Visible = true;
+            // 
+            // loadingView1
+            // 
+            this.loadingView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(187)))), ((int)(((byte)(7)))));
+            this.loadingView1.Enabled = false;
+            this.loadingView1.Location = new System.Drawing.Point(329, 193);
+            this.loadingView1.Name = "loadingView1";
+            this.loadingView1.Size = new System.Drawing.Size(236, 239);
+            this.loadingView1.TabIndex = 4;
+            this.loadingView1.Text = "loadingView1";
+            // 
+            // btnSend
+            // 
+            this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSend.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnSend.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnSend.ForeColor = System.Drawing.Color.White;
+            this.btnSend.Location = new System.Drawing.Point(451, 77);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(90, 28);
+            this.btnSend.TabIndex = 2;
+            this.btnSend.Text = "发送";
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.BackgroundImage = global::WeChat.Properties.Resources.img_bg;
+            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Controls.Add(this.lblOpUser);
+            this.panel4.Controls.Add(this.MessageContext);
+            this.panel4.Location = new System.Drawing.Point(310, 27);
+            this.panel4.Margin = new System.Windows.Forms.Padding(0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(550, 613);
+            this.panel4.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.Location = new System.Drawing.Point(0, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(547, 1);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "label1";
+            // 
+            // lblOpUser
+            // 
+            this.lblOpUser.AutoSize = true;
+            this.lblOpUser.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblOpUser.Location = new System.Drawing.Point(7, 7);
+            this.lblOpUser.Name = "lblOpUser";
+            this.lblOpUser.Size = new System.Drawing.Size(164, 25);
+            this.lblOpUser.TabIndex = 1;
+            this.lblOpUser.Text = "你点赞的样子好帅";
+            this.lblOpUser.Visible = false;
+            // 
+            // MessageContext
+            // 
+            this.MessageContext.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MessageContext.Controls.Add(this.fListView1);
+            this.MessageContext.Controls.Add(this.panel7);
+            this.MessageContext.Location = new System.Drawing.Point(1, 35);
+            this.MessageContext.Margin = new System.Windows.Forms.Padding(0);
+            this.MessageContext.Name = "MessageContext";
+            this.MessageContext.Size = new System.Drawing.Size(549, 578);
+            this.MessageContext.TabIndex = 0;
+            this.MessageContext.Visible = false;
+            // 
+            // fListView1
+            // 
+            this.fListView1.Adapter = null;
+            this.fListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.fListView1.ItemDivider = 10;
+            this.fListView1.Location = new System.Drawing.Point(2, 0);
+            this.fListView1.Margin = new System.Windows.Forms.Padding(0);
+            this.fListView1.MouseHolder = null;
+            this.fListView1.Name = "fListView1";
+            this.fListView1.ScrollBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(201)))), ((int)(((byte)(198)))));
+            this.fListView1.SelectHolder = null;
+            this.fListView1.Size = new System.Drawing.Size(544, 460);
+            this.fListView1.TabIndex = 0;
+            this.fListView1.Text = "fListView1";
+            this.fListView1.ItemClick += new WinForm.UI.Controls.FListView.ItemClickHandler(this.fListView1_ItemClick);
+            // 
+            // panel7
+            // 
+            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel7.BackColor = System.Drawing.Color.White;
+            this.panel7.Controls.Add(this.btnFace);
+            this.panel7.Controls.Add(this.btnSend);
+            this.panel7.Controls.Add(this.txtMessage);
+            this.panel7.Location = new System.Drawing.Point(2, 463);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(544, 114);
+            this.panel7.TabIndex = 3;
+            // 
+            // btnFace
+            // 
+            this.btnFace.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFace.Image = global::WeChat.Properties.Resources.img_face;
+            this.btnFace.IsSelected = false;
+            this.btnFace.Location = new System.Drawing.Point(18, 3);
+            this.btnFace.MouseMoveImage = global::WeChat.Properties.Resources.img_face_move;
+            this.btnFace.Name = "btnFace";
+            this.btnFace.SelectedImage = null;
+            this.btnFace.Size = new System.Drawing.Size(23, 23);
+            this.btnFace.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.btnFace.TabIndex = 3;
+            this.btnFace.TabStop = false;
+            this.btnFace.Click += new System.EventHandler(this.btnFace_Click);
+            // 
+            // txtMessage
+            // 
+            this.txtMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtMessage.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtMessage.Location = new System.Drawing.Point(20, 28);
+            this.txtMessage.Margin = new System.Windows.Forms.Padding(0);
+            this.txtMessage.Name = "txtMessage";
+            this.txtMessage.Size = new System.Drawing.Size(505, 47);
+            this.txtMessage.TabIndex = 1;
+            this.txtMessage.Text = "";
+            // 
             // MainForm
             // 
             this.AcceptButton = this.btnSend;
@@ -439,23 +441,23 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSkin1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSkin2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSkin3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSkin4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHead)).EndInit();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.MessageContext.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnFace)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSkin1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSkin2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSkin3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSkin4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbHead)).EndInit();
             this.ResumeLayout(false);
 
         }
